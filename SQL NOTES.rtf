@@ -1,0 +1,578 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs36\lang9 SQL Notes     (03-02-2021)\par
+\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where salary between 2500 and 3000;  \par
+\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where salary >= 2500;\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where salary <= 3000;\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where salary >= 2500 and salary <= 3000;\par
+\par
+\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where hire_date = '15-MAR-06';\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where hire_date between  '01-MAR-06' and '31-MAR-06';\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where hire_date between  '01-Jan-06' and '31-Dec-06';\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where hire_date between  '01-Jan-2006' and '31-Dec-2006';\par
+\par
+\par
+select sysdate from dual;\par
+\par
+select sysdate,\par
+to_char(sysdate,'YYYY/MM/DD') as Cust_fotmat,\par
+to_char(sysdate,'YYYY') as "Year",\par
+to_char(sysdate,'MONTH') as "Month"\par
+from dual;\par
+\par
+\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number,\par
+    hire_date,to_char(hire_date,'YYYY') as "Year", to_char(hire_date,'MONTH') as "Month Name",\par
+    job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'YYYY')  = 2006;\par
+\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date,to_char(hire_date,'MONTH') as "Month Name", job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'MONTH') = 'MARCH    ';\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date,\par
+    to_char(hire_date,'MONTH') as "Month Name",\par
+    trim(to_char(hire_date,'MONTH')),\par
+    job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees;\par
+\par
+select 'Kumar' as Name,  trim('  Kumar   ')  as Name1 from dual;\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date,\par
+    to_char(hire_date,'MONTH') as "Month Name",\par
+    trim(to_char(hire_date,'MONTH')),\par
+    job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where trim(to_char(hire_date,'MONTH')) = 'MARCH';\par
+\par
+select sysdate,\par
+to_char(sysdate,'YYYY/MM/DD') as Cust_fotmat,\par
+to_char(sysdate,'YYYY') as "Year",\par
+to_char(sysdate,'MM') as "Month No"\par
+from dual;\par
+\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date,\par
+    to_char(hire_date,'MONTH') as "Month Name",\par
+   to_char(hire_date,'MM'),\par
+    job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'MM') = '03';\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date,\par
+    to_char(hire_date,'MONTH') as "Month Name",\par
+   to_char(hire_date,'MM'),\par
+    job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'MM') = 000003;\par
+\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date,\par
+    to_char(hire_date,'MONTH') as "Month Name",\par
+   to_char(hire_date,'MM'),\par
+    job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'MM') = 3;\par
+\par
+select Employee_ID, First_name, last_name from HR.employees;\par
+Select Department_ID,Department_name, Manager_ID from HR.Departments;\par
+Select Country_ID, Country_name, Region_ID from HR.countries;\par
+\par
+select Employee_ID, First_name, last_name from HR.employees;\par
+\par
+select *from HR.Employees where salary=4100;\par
+\par
+select * from hr.employees where salary<4100 order by salary;\par
+\par
+select  * FROM HR.EMPLOYEES WHERE SALARY <=2800;\par
+\par
+select * from HR.EMPLOYEES where salary>=2800;\par
+\par
+SELECT * FROM HR.EMPLOYEES WHERE SALARY BETWEEN 2800 AND 3800;\par
+\par
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID = 'AD_PRES';\par
+\par
+\par
+SELECT FIRST_NAME AS " FIRST NAME",\par
+EMAIL AS " EMAIL ID" FROM HR.EMPLOYEES WHERE EMAIL = 'SBAIDA' ;\par
+\par
+Select  * from HR.Employees where department_id=150;\par
+\par
+Select  * from HR.Employees where department_id=150;\par
+\par
+\par
+select * from hr.employees where department_id = 40;\par
+\par
+select * from hr.employees where department_id = &DeptID;\par
+\par
+Select\par
+ *\par
+ from\par
+ HR.EMPLOYEES\par
+ where salary <2000;\par
+ \par
+ \par
+select * from hr.employees where hire_date = '17-Jun-03';\par
+\par
+select * from HR.Employees where trim(to_char (hire_date, 'MONTH')) = 'JUNE';\par
+select * from HR.Employees where to_char (hire_date, 'MM') = 6;\par
+\par
+\par
+select *\par
+from hr.employees\par
+where hire_date= '17-Jun-03';\par
+\b\fs28 SQL Notes (03-04-2021,Thursday)\par
+\b0\fs22   SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+select last_name, job_id from HR.employees where salary between 3400 and 5500;\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where salary >= 3400 and salary <= 5500;\par
+\par
+SELECT  \par
+*\par
+FROM HR.EMPLOYEES\par
+WHERE to_char (HIRE_DATE,'YY') = 02;\par
+\par
+\par
+select * from hr.employees where to_char(hire_date,'yyyy') = '2002';\par
+\par
+\par
+select * from hr.employees\par
+where to_char(hire_date,'YYYY') between 2002 and 2005;\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE, 'YYYY')>=2002\par
+AND TO_CHAR(HIRE_DATE, 'YYYY')<=2005;\par
+\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where hire_date between  '01-Jan-2002' and '31-Dec-2005';\par
+\par
+\par
+select FIRST_NAME,HIRE_DATE,DEPARTMENT_ID\par
+from HR.employees where to_char(hire_date,'yyyy')='2005' and DEPARTMENT_ID = 50;\par
+\par
+SELECT FIRST_NAME, HIRE_DATE,DEPARTMENT_ID\par
+    FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE,'YYYY') = 2005 AND DEPARTMENT_ID = 50;\par
+\par
+SELECT * FROM hr.employees where\par
+hire_date between '01-JUN-03' and '01- JUN-07' ;\par
+\par
+SELECT  TO_CHAR(HIRE_DATE,'DD/MON/YY')  FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE,'DD/MON/YY')= '21/SEP/05';\par
+\par
+Select\par
+FIRST_NAME,\par
+LAST_NAME\par
+From HR.Employees\par
+Where  JOB_ID = 'ST_CLERK';\par
+\par
+\par
+\par
+select * from hr.employees where\par
+trim( to_char(hire_date,'MONTH'))='JUNE' or trim( to_char(hire_date,'MONTH'))='MAY';\par
+\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+    where department_id = 30 or department_id = 10 or department_id = 20;\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+    where department_id IN ( 30 ,50, 20)  and salary > 5000; -- list of values\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+    where (department_id = 30 or  department_id = 50 or department_id = 20) and salary > 5000;\par
+   \par
+select * from hr.employees\par
+where to_char(Hire_date,'MON')= 'JUN';\par
+\par
+select * from HR.employees where to_char(hire_date,'MM') = '06';  \par
+select * from HR.employees where to_char(hire_date,'MM') = 6;\par
+\par
+SELECT FIRST_NAME, LAST_NAME,  HIRE_DATE, to_char(hire_date,'MONTH') as "Month" FROM HR.EMPLOYEES\par
+WHERE TRIM(TO_CHAR(HIRE_DATE, 'MONTH')) = 'JUNE';\par
+\par
+Select * from HR.employees where trim (to_char(hire_date, 'month')) = 'june';\par
+\par
+select length('Kumar') , length(' Kumar '), length (trim ('  Kumar  ') )from dual;\par
+\par
+SELECT * FROM HR.EMPLOYEES where salary >=3000;\par
+\par
+Select * from HR.employees where email= 'LDEHAAN';\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE EMAIL = 'LDEHAAN';\par
+\par
+select * from hr.employees where salary > 3000;\par
+\par
+select*from hr.employees where salary=3000;\par
+\par
+select*from hr.employees where salary>=3000;  \par
+Thanks,\par
+Learn IT Tools\par
+sqltraining@learnittools.com\par
+\ldblquote If you're not willing to learn, no one can help you. If you're determined to learn, no one can stop you." ~ Unknown\par
+Attachments area\par
+Preview YouTube video Install Oracle Database and SQL Developer\par
+\par
+Preview YouTube video Practice SQL Online\par
+\par
+\b\fs36 SQL Notes   (03-04-2021) \ul I donot understand what is This ?\par
+\ulnone\b0\fs22 SELECTSQL Notes\par
+  SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+select last_name, job_id from HR.employees where salary between 3400 and 5500;\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where salary >= 3400 and salary <= 5500;\par
+\par
+SELECT  \par
+*\par
+FROM HR.EMPLOYEES\par
+WHERE to_char (HIRE_DATE,'YY') = 02;\par
+\par
+\par
+select * from hr.employees where to_char(hire_date,'yyyy') = '2002';\par
+\par
+\par
+select * from hr.employees\par
+where to_char(hire_date,'YYYY') between 2002 and 2005;\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE, 'YYYY')>=2002\par
+AND TO_CHAR(HIRE_DATE, 'YYYY')<=2005;\par
+\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+where hire_date between  '01-Jan-2002' and '31-Dec-2005';\par
+\par
+\par
+select FIRST_NAME,HIRE_DATE,DEPARTMENT_ID\par
+from HR.employees where to_char(hire_date,'yyyy')='2005' and DEPARTMENT_ID = 50;\par
+\par
+SELECT FIRST_NAME, HIRE_DATE,DEPARTMENT_ID\par
+    FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE,'YYYY') = 2005 AND DEPARTMENT_ID = 50;\par
+\par
+SELECT * FROM hr.employees where\par
+hire_date between '01-JUN-03' and '01- JUN-07' ;\par
+\par
+SELECT  TO_CHAR(HIRE_DATE,'DD/MON/YY')  FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE,'DD/MON/YY')= '21/SEP/05';\par
+\par
+Select\par
+FIRST_NAME,\par
+LAST_NAME\par
+From HR.Employees\par
+Where  JOB_ID = 'ST_CLERK';\par
+\par
+\par
+\par
+select * from hr.employees where\par
+trim( to_char(hire_date,'MONTH'))='JUNE' or trim( to_char(hire_date,'MONTH'))='MAY';\par
+\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+    where department_id = 30 or department_id = 10 or department_id = 20;\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+    where department_id IN ( 30 ,50, 20)  and salary > 5000; -- list of values\par
+\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id\par
+FROM\par
+    hr.employees\par
+    where (department_id = 30 or  department_id = 50 or department_id = 20) and salary > 5000;\par
+   \par
+select * from hr.employees\par
+where to_char(Hire_date,'MON')= 'JUN';\par
+\par
+select * from HR.employees where to_char(hire_date,'MM') = '06';  \par
+select * from HR.employees where to_char(hire_date,'MM') = 6;\par
+\par
+SELECT FIRST_NAME, LAST_NAME,  HIRE_DATE, to_char(hire_date,'MONTH') as "Month" FROM HR.EMPLOYEES\par
+WHERE TRIM(TO_CHAR(HIRE_DATE, 'MONTH')) = 'JUNE';\par
+\par
+Select * from HR.employees where trim (to_char(hire_date, 'month')) = 'june';\par
+\par
+select length('Kumar') , length(' Kumar '), length (trim ('  Kumar  ') )from dual;\par
+\par
+SELECT * FROM HR.EMPLOYEES where salary >=3000;\par
+\par
+Select * from HR.employees where email= 'LDEHAAN';\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE EMAIL = 'LDEHAAN';\par
+\par
+select * from hr.employees where salary > 3000;\par
+\par
+select*from hr.employees where salary=3000;\par
+\par
+select*from hr.employees where salary>=3000;  \par
+Thanks,\par
+Learn IT Tools\par
+sqltraining@learnittools.com\par
+\ldblquote If you're not willing to learn, no one can help you. If you're determined to learn, no one can stop you." ~ Unknown\par
+Attachments area\par
+Preview YouTube video Install Oracle Database and SQL Developer\par
+\par
+Preview YouTube video Practice SQL Online\par
+\par
+    r.po_no AS "PO NUMBER",\par
+    r.rpo_purchase_do AS "PURCHASE ORDER LIMIT",\par
+    r.change_dt,\par
+    r.notes,\par
+    SUM(r.upo_purchase_do) AS "PURCHASE ORDER",\par
+    SUM(r.purchase_cco_do) AS "CHANGE ORDER",\par
+    SUM(r.upo_purchase_do) + SUM(r.purchase_cco_do) AS "TOTAL",\par
+    SUM(r.ordered) AS "UNITS ON ORDER",\par
+    SUM(r.active) AS "ACTIVE UNITS",\par
+    r."CREATION DATE",\par
+    CASE\par
+            WHEN SUM(r.ordered) > 0\par
+                 AND SUM(r.active) IS NULL THEN 'ORDERED'\par
+            WHEN SUM(r.ordered) IS NULL\par
+                 AND SUM(r.active) > 0 THEN 'ACTIVE'\par
+            WHEN SUM(r.ordered) > 0\par
+                 AND SUM(r.active) > 0 THEN 'MIXED'\par
+        END\par
+    AS status\par
+FROM\par
+    (\par
+        SELECT\par
+            rpo.change_dt,\par
+            rpo.notes,\par
+            rpo.po_no,\par
+            rpo.purchase_do AS rpo_purchase_do,\par
+            upo.purchase_do AS upo_purchase_do,\par
+            upo.purchase_cco_do,\par
+            CASE\par
+                    WHEN um.status IN (\par
+                        'O',\par
+                        'B'\par
+                    ) THEN 1\par
+                END\par
+            AS "ORDERED",\par
+            CASE\par
+                    WHEN um.status IN (\par
+                        'A',\par
+                        'D'\par
+                    ) THEN 1\par
+                END\par
+            AS "ACTIVE",\par
+            um.acquis_dt,\par
+            TO_DATE(TO_CHAR(rpo.purchase_dt,'MM/DD/YYYY'),'MM/DD/YYYY') AS "CREATION DATE",\par
+            TO_DATE(TO_CHAR(rpo.change_dt,'MM/DD/YYYY'),'MM/DD/YYYY') AS "PO CHANGE DATE"\par
+        FROM\par
+            mfive.unitrequestpo rpo\par
+            LEFT JOIN mfive.unit_po upo ON upo.company = rpo.company\par
+                                           AND upo.po_no = rpo.po_no\par
+            LEFT JOIN mfive.unit_dept_comp_main um ON um.company = rpo.company\par
+                                                      AND um.unit_id = upo.unit_id\par
+        WHERE\par
+            rpo.company = 'SDGE'\par
+            AND rpo.po_status_cd IN (\par
+                'O',\par
+                'B'\par
+            )\par
+            AND (\par
+                (\par
+                    TRIM(rpo.notes) LIKE ( 'FIXED_%' )\par
+                    AND TO_DATE(substr(TRIM(rpo.notes),7,10),'MM/DD/YYYY') < TO_DATE(TO_CHAR(rpo.change_dt,'MM/DD/YYYY'),'MM/DD/YYYY')\par
+                )\par
+                OR (\par
+                    TRIM(rpo.notes) NOT LIKE ( 'FIXED_%' )\par
+                    OR rpo.notes IS NULL\par
+                )\par
+            )\par
+            AND (\par
+                (\par
+                    rpo.purchase_do = 0\par
+                    AND rpo.purchase_dt >= '01-JAN-2016'\par
+                )\par
+                OR rpo.purchase_do > 0\par
+            )\par
+            AND um.unit_type = 'U'\par
+            AND um.unit_id NOT IN (\par
+                SELECT\par
+                    ud.unit_id\par
+                FROM\par
+                    mfive.unitdis ud\par
+                WHERE\par
+                    ud.dis_status_cd IN (\par
+                        'R'\par
+                    )\par
+                    AND ud.company = 'SDGE'\par
+            )\par
+--AND UM.ASSET_TYPE = 'UNIT'\par
+            AND um.status NOT IN (\par
+                'S'\par
+            )\par
+--(UM.STATUS IN ('O','B') OR (RPO.CHANGE_DT > UM.ACQUIS_DT AND UM.STATUS NOT IN ('S') ))\par
+        ORDER BY\par
+            1\par
+    ) r\par
+GROUP BY\par
+    r.po_no,\par
+    r.rpo_purchase_do,\par
+    r."CREATION DATE",\par
+    r.notes,\par
+    r.change_dt\par
+\par
+\par
+}
+ 
