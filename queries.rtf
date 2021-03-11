@@ -1,4 +1,4 @@
-{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\b\f0\fs28\lang9 1.SQL Notes 03-02-2021 queries\par
 \b0\fs22 SELECT EMPLOYEE_ID FROM HR.EMPLOYEES;\par
@@ -816,6 +816,324 @@ select * from HR.employees\par
 where to_char(hire_date,'mon-yyyy') = 'jan-2005'\par
 or\par
 to_char(hire_date,'mon-yyyy') = 'mar-2007';\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\par
+\b\fs28 5.SQL Notes 03-10-2021 QUERIES\par
+\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees where first_name like '%ne%';\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees where first_name like '%Ne%';\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like '%e';\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like 'a%';\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like 'A%';\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like 'a%' or first_name like 'A%';\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like upper('a%');    \par
+   \par
+ \par
+ select Upper('Kumar') as Name from dual;  \par
+ select Lower('Kumar') as Name from dual;  \par
+ \par
+ \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where upper(first_name) like upper('al%');\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    upper(first_name)\par
+FROM\par
+    hr.employees where upper(first_name) like upper('AL%');\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    upper(first_name)\par
+FROM\par
+    hr.employees where upper(first_name) like upper('aL%');\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    lower(first_name)\par
+FROM\par
+    hr.employees where lower(first_name) like lower('aL%');\par
+\par
+\par
+select 'Kumar' as Name  from dual;\par
+\par
+\par
+SELECT\par
+    substr('Kumar',1,2),\par
+    substr('Kumar',1,3),\par
+    substr('Kumar',1,5)\par
+FROM\par
+    dual;\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    substr(first_name,1,1),\par
+    substr(last_name,1,1)\par
+FROM\par
+    hr.employees where substr(first_name,1,1) = substr(last_name,1,1);\par
+\par
+ \par
+ SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where lower(first_name) like lower('%a%');  \par
+   \par
+   \par
+SELECT count(*)  FROM hr.employees\par
+Union\par
+SELECT count(*)  FROM hr.DEPARTMENTS;\par
+\par
+SELECT 'employees' as TableName, count(*)   FROM hr.employees\par
+Union\par
+SELECT 'DEPARTMENTS' as TableName, count(*)  FROM hr.DEPARTMENTS;\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\par
+\b\fs28 SQL Notes 03-10-2021 queries\par
+\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees where first_name like '%ne%';\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees where first_name like '%Ne%';\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like '%e';\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like 'a%';\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like 'A%';\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like 'a%' or first_name like 'A%';\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where first_name like upper('a%');    \par
+   \par
+ \par
+ select Upper('Kumar') as Name from dual;  \par
+ select Lower('Kumar') as Name from dual;  \par
+ \par
+ \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where upper(first_name) like upper('al%');\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    upper(first_name)\par
+FROM\par
+    hr.employees where upper(first_name) like upper('AL%');\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    upper(first_name)\par
+FROM\par
+    hr.employees where upper(first_name) like upper('aL%');\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    lower(first_name)\par
+FROM\par
+    hr.employees where lower(first_name) like lower('aL%');\par
+\par
+\par
+select 'Kumar' as Name  from dual;\par
+\par
+\par
+SELECT\par
+    substr('Kumar',1,2),\par
+    substr('Kumar',1,3),\par
+    substr('Kumar',1,5)\par
+FROM\par
+    dual;\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    substr(first_name,1,1),\par
+    substr(last_name,1,1)\par
+FROM\par
+    hr.employees where substr(first_name,1,1) = substr(last_name,1,1);\par
+\par
+ \par
+ SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name\par
+FROM\par
+    hr.employees where lower(first_name) like lower('%a%');  \par
+   \par
+   \par
+SELECT count(*)  FROM hr.employees\par
+Union\par
+SELECT count(*)  FROM hr.DEPARTMENTS;\par
+\par
+SELECT 'employees' as TableName, count(*)   FROM hr.employees\par
+Union\par
+SELECT 'DEPARTMENTS' as TableName, count(*)  FROM hr.DEPARTMENTS;\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 }
  
