@@ -2,6 +2,7 @@
 {\colortbl ;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\b\f0\fs28\lang9 03-04-2021 homework quiryies\par
+SQL ASignment 4\par
 \b0\fs22 1.Select all column form Employees who has joined between 2005 and 2009? *\par
 SELECT * FROM HR.EMPLOYEES\par
 WHERE HIRE_DATE BETWEEN  '01-JAN-2005' AND '31-DEC-2009';\par
@@ -190,7 +191,42 @@ WHERE DEPARTMENT_ID IN (50, 70) AND NOT COMMISSION_PCT = NULL;\par
 16.Select all Employees from Employees who work in who does not receive commission ? *\par
 SELECT * FROM EMPLOYEES WHERE COMMISSION_PCT = NULL;\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
-\b\fs28\par
+\b\fs32 SQL Assignment 7 \par
+\b0\fs22 1.Display Employees who joined before 2003 and after 2005 ? *\par
+SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN '2004';\par
+2.Display Employees who has job id = IT_PROG and work in department 50? *\par
+SELECT * FROM HR.EMPLOYEES  WHERE JOB_ID ='IT_PROG' AND DEPARTMENT_ID =50;\par
+3.Display Employees who has job id = IT_PROG and salary between 2500 and 7500? *\par
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID = 'IT_PROG' AND SALARY BETWEEN 2500 AND 7500;\par
+4.Display department ID, year, and Number of employees joined? *\par
+SELECT DEPARTMENT_ID,TO_CHAR(HIRE_DATE, 'YYYY'),COUNT(*) FROM HR.EMPLOYEES\par
+GROUP BY DEPARTMENT_ID, TO_CHAR(HIRE_DATE, 'YYYY') \par
+ORDER BY DEPARTMENT_ID,TO_CHAR(HIRE_DATE, 'YYYY');\par
+5.Display number of employees joined after 15th of the month? *\par
+SELECT * FROM EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'DD')  >='15';\par
+6.Perform union using Employees tables condition DEPARTMENT_ID in (70,80,90) and Salary > 10000 and COMMISSION_PCT is not empty? *\par
+SELECT * FROM HR.EMPLOYEES WHERE DEPARTMENT_ID IN(70,80,90) \par
+union\par
+SELECT * FROM HR.EMPLOYEES WHERE SALARY >10000 \par
+UNION\par
+SELECT * FROM HR.EMPLOYEES WHERE COMMISSION_PCT IS NOT NULL;\par
+7.Display employees details for those employees who has any vowel (a, e, i, o, or u) in last name? *\par
+SELECT * FROM HR.EMPLOYEES WHERE LAST_NAME LIKE '%a%' OR LAST_NAME LIKE '%e%' OR \par
+LAST_NAME LIKE '%i%' OR LAST_NAME LIKE '%o%' OR LAST_NAME LIKE '%u';\par
+8.Display employees who got same third character in first or last name? *\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    substr(first_name,3,1),\par
+    substr(last_name,3,1)\par
+FROM\par
+    hr.employees where substr(first_name,3,1) = substr(last_name,3,1);\par
+9.Display all Employees from Employees table except year 2007? *\par
+SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN '2007';\par
+10.Display all Employees from Employees table who joined either Jan 2005 or Mar 2007 and not belongs to Department 70? *\par
+  SELECT * FROM HR.EMPLOYEES WHERE (TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'JAN-2005' OR     TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'MAR-2007') AND DEPARTMENT_ID NOT IN (70);\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\b\fs28\par
 \par
 }
  

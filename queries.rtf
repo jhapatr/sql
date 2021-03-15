@@ -1135,5 +1135,165 @@ SELECT 'employees' as TableName, count(*)   FROM hr.employees\par
 Union\par
 SELECT 'DEPARTMENTS' as TableName, count(*)  FROM hr.DEPARTMENTS;\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs28 6.SQL Notes 03-13-2021 queries\par
+\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees where department_id = 30;\par
+   \par
+   \par
+SELECT department_id, COUNT(*) from  HR.employees  GROUP BY department_id;\par
+\par
+\par
+select department_id,count(*) EMP_CNT from hr.employees\par
+where\par
+department_id is not null\par
+group by department_id;\par
+\par
+SELECT\par
+    COUNT(*),\par
+    SUM(salary),\par
+    MAX(salary),\par
+    MIN(salary),\par
+    AVG(salary)\par
+FROM\par
+    hr.employees;\par
+   \par
+   \par
+SELECT\par
+    COUNT(employee_id),\par
+    MIN(hire_date),\par
+    MAX(department_id),\par
+    SUM(salary),\par
+    round(AVG(commission_pct) )\par
+FROM\par
+    hr.employees;\par
+   \par
+   \par
+select job_id,avg(salary) from hr.employees group by job_id;\par
+\par
+SELECT JOB_ID, ROUND(AVG(SALARY)) FROM HR.EMPLOYEES GROUP BY JOB_ID;\par
+\par
+\par
+Select Last_Name, Job_ID from HR.Employees\par
+Where Commission_Pct is Not NUll;\par
+\par
+SELECT JOB_ID FROM HR.EMPLOYEES\par
+WHERE SALARY>15000\par
+GROUP BY JOB_ID;\par
+\par
+select  job_id from hr.employees where salary>15000;\par
+\par
+select distinct job_id from hr.employees where salary> 15000;\par
+\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE (DEPARTMENT_ID IN(50,60))\par
+AND (SALARY BETWEEN 3000 AND 7000);\par
+\par
+SELECT  *\par
+FROM HR.EMPLOYEES\par
+WHERE (SALARY >= 3000 AND  SALARY <= 7000 )AND DEPARTMENT_ID IN(50, 60)\par
+;\par
+\par
+\par
+SELECT * FROM HR.EMPLOYEES WHERE\par
+SALARY BETWEEN 3000 AND 7000 AND (DEPARTMENT_ID =50 OR DEPARTMENT_ID =60);\par
+\par
+\par
+SELECT * FROM HR.EMPLOYEES WHERE\par
+(SALARY BETWEEN 3000 AND 7000) OR (DEPARTMENT_ID =50 OR DEPARTMENT_ID =60);\par
+\par
+\par
+select COUNT(*) from hr.employees;\par
+select COUNT(*) from hr.departments;\par
+select COUNT(*) from hr.countries;\par
+select COUNT(*) from hr.job_history;\par
+select COUNT(*) from hr.jobs;\par
+select COUNT(*) from hr.locations;\par
+select COUNT(*) from hr.regions;\par
+\par
+select table_name,num_rows from all_tables where owner='HR';\par
+\par
+\par
+SELECT 'employees' as TableName, count(*)from HR.employees\par
+union\par
+ select  'departments' as tablename,count(*)from hr.departments\par
+union\par
+select 'countries' as TableName, count(*)from HR.countries\par
+union\par
+ select  'job_history' as tablename,count(*)from hr.job_history\par
+union\par
+ SELECT 'jobs' as TableName, count(*)from HR.jobs\par
+union\par
+ select  'locations' as tablename,count(*)from hr.locations\par
+ union\par
+ select  'regions' as tablename,count(*)from hr.regions;\par
+ \par
+ \par
+SELECT *\par
+FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE,'MM') = 05;\par
+\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE,'MON') = 'MAY';\par
+\par
+\par
+select employee_id,department_id,commission_pct\par
+from hr.employees where\par
+department_id in (30, 50, 110) and commission_pct is not  null;\par
+\par
+Select * from HR.employees where (department_id in(30,50,110)) or (commission_pct is not null);\par
+\par
+select * from hr.employees where department_id in(30,50,110) or commission_pct is NOT NULL;\par
+\par
+\par
+select to_char(hire_date,'YYYY'),count(*) from hr.employees\par
+where salary between 7000 and 12000 group by to_char(hire_date,'YYYY');\par
+\par
+\par
+SELECT\par
+    COUNT(TO_CHAR(hire_date,'MON') ),\par
+    TO_CHAR(hire_date,'MON') monthwise\par
+FROM\par
+    hr.employees\par
+WHERE\par
+    salary < 5000\par
+GROUP BY\par
+    TO_CHAR(hire_date,'MON')\par
+ORDER BY\par
+    COUNT(TO_CHAR(hire_date,'MON') ) DESC;\par
+   \par
+select to_char(hire_date,'mon'),\par
+count(*) from hr.employees where salary <=5000\par
+group by to_char(hire_date,'mon') order by count(*) desc;\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 }
  
