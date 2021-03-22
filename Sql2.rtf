@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Courier New;}}
 {\colortbl ;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\b\f0\fs28\lang9 03-04-2021 homework quiryies\par
@@ -106,7 +106,7 @@ Display Year wise count of employees from Employees from Employees who has salar
 SELECT TO_CHAR(HIRE_DATE, 'YYYY'), COUNT(*) FROM HR.EMPLOYEES WHERE SALARY BETWEEN 7000 AND 12000 GROUP BY TO_CHAR(HIRE_DATE, 'YYYY') ORDER BY TO_CHAR(HIRE_DATE, 'YYYY');\par
 Display Month wise count of employees from Employees who has salary between less than 5000 in descending order by count? *\par
 SELECT TO_CHAR(HIRE_DATE, 'Month'), COUNT(*) FROM HR.EMPLOYEES WHERE SALARY < 5000 ORDER BY COUNT(*) DESC;\par
-\b\fs28 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs28 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 \fs32 SQL Assignment 6 \par
 \b0\fs22 1.Select all column form Employees who has first name starting with 'C'? *\par
 Use HR.Employees Table; additional help listen recording\par
@@ -190,7 +190,7 @@ WHERE DEPARTMENT_ID IN (50, 70) AND NOT COMMISSION_PCT = NULL;\par
 \par
 16.Select all Employees from Employees who work in who does not receive commission ? *\par
 SELECT * FROM EMPLOYEES WHERE COMMISSION_PCT = NULL;\par
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 \b\fs32 SQL Assignment 7 \par
 \b0\fs22 1.Display Employees who joined before 2003 and after 2005 ? *\par
 SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN '2004';\par
@@ -226,7 +226,163 @@ FROM\par
 SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN '2007';\par
 10.Display all Employees from Employees table who joined either Jan 2005 or Mar 2007 and not belongs to Department 70? *\par
   SELECT * FROM HR.EMPLOYEES WHERE (TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'JAN-2005' OR     TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'MAR-2007') AND DEPARTMENT_ID NOT IN (70);\par
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\b\fs28\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs32 SQL Assignment 8\par
+
+\pard\b0\f1\fs22\lang1033 -- QUESTION #1\par
+--Display the DEPARTMENT_ID, DEPARTMENT Name \par
+--and highest salary in each department form Employee Table? \par
+\par
+SELECT E.DEPARTMENT_ID, D.DEPARTMENT_NAME, J.MAX_SALARY FROM EMPLOYEES E\par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN JOBS J ON E.JOB_ID = J.JOB_ID;\par
+\par
+\par
+-- QUESTION # 2\par
+SELECT * FROM HR.EMPLOYEES \par
+WHERE \par
+TO_CHAR(HIRE_DATE, 'MM-YYYY') >='01-2005' AND TO_CHAR(HIRE_DATE, 'MM-YYYY') <='02-2007'\par
+AND\par
+DEPARTMENT_ID NOT IN (50,60)\par
+AND\par
+SALARY > 4500;\par
+\par
+\par
+-- QUESTION#3 Display unique City and department Name? *\par
+SELECT DISTINCT  CITY AS "NAMES" FROM LOCATIONS\par
+UNION\par
+SELECT DISTINCT DEPARTMENT_NAME "NAMES" FROM DEPARTMENTS;\par
+\par
+SELECT DISTINCT  CITY AS "NAMES" FROM LOCATIONS;\par
+SELECT DISTINCT DEPARTMENT_NAME "NAMES" FROM DEPARTMENTS;\par
+\par
+--QUESTION #4 Country wise employees highest and avg salary? *\par
+\par
+SELECT C.COUNTRY_NAME, MAX(E.SALARY) AS MAX_SALARY_COUNTRYWISE, ROUND(AVG(E.SALARY)) AS AVG_SALARY_COUNTRYWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+GROUP BY C.COUNTRY_NAME;\par
+\par
+--QUESTION#5 Display City wise avg salary?\par
+SELECT l.city, ROUND(AVG(E.SALARY)) AS AVG_SALARY_COUNTRYWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+GROUP BY L.CITY;\par
+\par
+--QUESTION#6 Display the region wise average, min and max salary? *\par
+SELECT R.REGION_NAME, MIN(E.SALARY) AS MIN_SALARY_REGIONWISE, MAX(E.SALARY) AS MAX_SALARY_REGIONWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+JOIN regions R ON C.REGION_ID = r.region_id\par
+GROUP BY R.REGION_NAME;\par
+\par
+\par
+--QUESTION#7 Display City wise number of employees in descending order? *\par
+SELECT l.city, COUNT(*) FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+GROUP BY L.CITY ORDER BY COUNT(*) DESC;\par
+\par
+\par
+--QUESTION#8 Display Region Name, City, Dept Name and hire year for all the employees *\par
+SELECT E.FIRST_NAME, E.LAST_NAME, r.region_name, l.city, d.department_name, TO_CHAR(E.HIRE_DATE,'YYYY') AS HIREYEAR\par
+FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+JOIN REGIONS R ON C.REGION_ID = r.region_id;\par
+\par
+\par
+--QUESTION#9 Display Job Title, Employee First Name and Department name of employees \par
+--who joined between 2003 and 2007? *\par
+--Use jobs table for Job Title\par
+SELECT J.JOB_TITLE, E.FIRST_NAME, d.department_name, TO_CHAR(E.HIRE_DATE,'YYYY') AS HIREYEAR\par
+FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN JOBS J ON E.JOB_ID = J.JOB_ID\par
+WHERE TO_CHAR(E.HIRE_DATE,'YYYY') >= 2003 AND TO_CHAR(E.HIRE_DATE,'YYYY') <= 2005;\par
+\par
+
+\pard\sa200\sl276\slmult1\b\f0\fs32\lang9\par
+SQL Assignment 9\par
+
+\pard\b0\f1\fs22\lang1033 --1.explain difference to_char and to_date? with example *\par
+'TO_CHAR' use only for sting and it doesn't accept  range but 'TO_DATE' accept range\par
+exam:\par
+SELECT\par
+'01/01/2021' AS STING,\par
+'01/01/2021' +1 AS STING_NEXT_DAY,\par
+SYSDATE AS CURRENT_DATE,\par
+SYSDATE+1 AS CURRENT_DATE_ADDED\par
+FROM DUAL; \par
+--2.Display Emp id, Emp First Name who work in department 'Sales' and belongs to \par
+--country 'United States of America' ? *\par
+SELECT\par
+   EMP.employee_id,EMP.first_name\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+where department_name='Sales' and country_name='United States of America';\par
+\par
+--3.Display Employees who get 10000 or work in department 30 and COMMISSION_PCT is NULL? *\par
+select * from employees\par
+where (salary=10000 or department_id=30) and commission_PCT is null;\par
+\par
+--4.Display Employee details who department name is 'Shipping' and MIN_SALARY range is 3000 to 5000 \par
+--and for region 'Americas'? *\par
+SELECT * FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+JOIN hr.regions RGN\par
+ON RGN.region_id = CTR.region_id\par
+WHERE department_name='Shipping' and salary between 3000 and 5000 \par
+and region_name='Americas';\par
+\par
+--5.Display Day name and number of employees joined? *\par
+select to_char(hire_date,'Day') as DayName, count(*) as Totals \par
+from employees group by to_char(hire_date,'Day') order by count(*) desc;\par
+\par
+--6.Display Employee details who department name IS 'IT' \par
+--AND MIN_SALARY range IS 5000 to 9000 and his city is 'Seattle' or 'Southlake'? *\par
+SELECT\par
+  *\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+where DEPT.department_name='IT' and EMP.salary between 5000 and 9000 \par
+and (city='Seattle' or city='Southlake');  \par
+\par
+--7.Display the average salary from employee table where commission values is not NULL? *\par
+SELECT AVG(SALARY) FROM EMPLOYEES\par
+WHERE commission_PCT is not null;\par
+\par
+--8.Display unique department and unique job id count from employee table \par
+--where department values is not NULL? *\par
+SELECT  department_id,job_id from employees\par
+where department_id is not null\par
+GROUP BY department_id,job_id;\par
+\par
+select distinct department_id,job_id from employees where department_id is not null;\par
+
+\pard\sa200\sl276\slmult1\b\f0\fs32\lang9\par
+ \par
+\fs28\par
 \par
 }
  

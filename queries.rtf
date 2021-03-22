@@ -1611,6 +1611,128 @@ JOIN hr.locations LOC\par
 ON LOC.location_id = DEPT.location_id\par
 group by  LOC.city\par
 order by 1;\par
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs28 8.SQL Notes 03-18-2021 queries \ul dates\par
+\ulnone\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+SELECT * FROM HR.EMPLOYEES WHERE HIRE_DATE>='01-JAN-05';\par
+SELECT * FROM HR.EMPLOYEES WHERE HIRE_DATE <= '31-JAN-06';\par
+   \par
+SELECT * FROM HR.EMPLOYEES WHERE HIRE_DATE >='01-JAN-05' AND HIRE_DATE <= '31-JAN-06';\par
+\par
+\par
+SELECT * from HR.EMPLOYEES\par
+WHERE hire_date between '01/JAN/05' and '31/JAN/06';\par
+\par
+select * from hr.employees where hire_date between '01-jan-2005' and '31-jan-06';\par
+\par
+select * from hr.employees\par
+where\par
+hire_date between to_date('01/01/2005', 'dd/mm/yyyy') and to_date('31/01/2006', 'dd/mm/yyyy');\par
+\par
+\par
+select\par
+'01/01/2021' as Sting,\par
+sysdate as Current_Date,\par
+sysdate+1 as Current_Date_Added\par
+from dual;\par
+\par
+select\par
+'01/01/2021' as Sting,\par
+'01/01/2021' + 1 as Sting_Next_day,\par
+sysdate as Current_Date,\par
+sysdate+1 as Current_Date_Added\par
+from dual;\par
+\par
+select\par
+'01/01/2021' as Sting,\par
+to_date('01/01/2021','DD/MM/YYYY') as Date_format,\par
+to_date('01/01/2021','DD/MM/YYYY') + 1 as Date_Next_day,\par
+to_date('01/01/2021','DD/MM/YYYY') as Date_Next_day,\par
+to_char (to_date('01/01/2021','DD/MM/YYYY'), 'YYYY'),\par
+sysdate as Current_Date,\par
+sysdate+1 as Current_Date_Added\par
+from dual;\par
+\par
+SELECT * from HR.EMPLOYEES\par
+where salary < 3000 and\par
+(to_char(hire_date,'yyyy') = '2005' or department_id = 50);\par
+\par
+\par
+select to_char(hire_date,'yyyy'), department_id from hr.employees where salary<3000 and to_char(hire_date,'yyyy') = 2005 or department_id =50;\par
+\par
+SELECT\par
+    *\par
+FROM\par
+    hr.employees\par
+WHERE\par
+    ( salary < 3000\par
+      AND to_char(hire_date, 'YY') = 05 )\par
+    OR department_id = 50;\par
+\par
+Select To_char(hire_date, 'YYYY') as "Year",\par
+count(*) as "No_of_employees" from HR.employees\par
+where\par
+(salary between 5000 and 12000)\par
+group by to_char(hire_date,'YYYY');\par
+\par
+\par
+'\par
+\par
+\par
+Select First_Name, Last_Name, To_Char(HIre_Date,'YYYY')  \par
+from Hr.Employees\par
+Where  To_Char(HIre_Date,'YYYY') <> 2007;\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE,'YYYY') != '2007';\par
+\par
+SELECT * FROM HR.EMPLOYEES WHERE DEPARTMENT_ID <> 30 AND DEPARTMENT_ID <> 40;\par
+\par
+Select * from HR.employees Where (Department_id !=30 and department_id!=40);\par
+\par
+\par
+select * from hr.employees\par
+where department_id not in(30, 40);\par
+\par
+select * from hr.employees\par
+where (TO_CHAR(hire_date,'MON-YYYY') = 'JAN-2005'or TO_CHAR(hire_date,'MON-YYYY') = 'MAR-2007')\par
+and department_id != 70;\par
+\par
+SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'MON/YYYY')\par
+IN ('JAN/2005', 'MAR/2007') AND DEPARTMENT_ID != 70;\par
+\par
+select * from hr.employees\par
+where department_id in (50, 70)\par
+and commission_pct is Not Null;\par
+\par
+select * from hr.employees where commission_pct is null;\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE, 'DD') > 15;\par
+\par
+select count(*)  from hr.employees\par
+where( to_char(hire_date,'DD'))>15;\par
+\par
+\par
+select * from hr.employees\par
+ where last_name like '%a%' or last_name like '%A%'\par
+ or last_name like '%e%' or last_name like '%E%'\par
+  or last_name like '%i%' or last_name like '%I%'\par
+   or last_name like '%o%' or last_name like '%O%'\par
+    or last_name like '%u%' or last_name like '%U%';\par
 }
  
