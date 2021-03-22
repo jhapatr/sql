@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff31507\deff0\stshfdbch31505\stshfloch31506\stshfhich31506\stshfbi31507\deflang1033\deflangfe1033\themelang1033\themelangfe0\themelangcs0{\fonttbl{\f0\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f34\fbidi \froman\fcharset0\fprq2{\*\panose 02040503050406030204}Cambria Math;}
 {\f37\fbidi \fswiss\fcharset0\fprq2{\*\panose 020f0502020204030204}Calibri;}{\flomajor\f31500\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}
 {\fdbmajor\f31501\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\fhimajor\f31502\fbidi \fswiss\fcharset0\fprq2{\*\panose 020f0302020204030204}Calibri Light;}
@@ -440,3 +441,393 @@ ffffffffffffffffffffffffffffffff52006f006f007400200045006e0074007200790000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff000000000000000000000000000000000000000000000000
 0000000000000000000000000000000000000000000000000105000000000000}}
+=======
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs28\lang9 03-04-2021 homework quiryies\par
+SQL ASignment 4\par
+\b0\fs22 1.Select all column form Employees who has joined between 2005 and 2009? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE HIRE_DATE BETWEEN  '01-JAN-2005' AND '31-DEC-2009';\par
+\par
+SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,JOB_ID,\par
+SALARY,COMMISSION_PCT,MANAGER_ID,DEPARTMENT_ID FROM HR.EMPLOYEES\par
+WHERE HIRE_DATE BETWEEN '01-JAN-2005' AND '31-DEC-2009';\par
+\par
+2.Select all column form Employees who has joined in year 2007? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE HIRE_DATE BETWEEN '01-JAN-2007' AND '31-DEC-2007';\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE, 'YYYY') = '2007';\par
+\par
+3.Select all Employees from Employees who has salary between 3000 and 7000? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE SALARY BETWEEN '3000' AND '7000';\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE SALARY >='3000' AND SALARY <='7000';\par
+\par
+4.Select Sysdate in 10 different format from dual? use link {{\field{\*\fldinst{HYPERLINK http://infolab.stanford.edu/~ullman/fcdb/oracle/or-time.html }}{\fldrslt{http://infolab.stanford.edu/~ullman/fcdb/oracle/or-time.html\ul0\cf0}}}}\f0\fs22  for you reference *\par
+MM Numeric month (e.g., 07); MON Abbreviated month name (e.g., JUL); MONTH Full month name (e.g., JULY); DD Day of month (e.g., 24); DY Abbreviated name of day (e.g., FRI); YYYY 4-digit year (e.g., 1998); YY Last 2 digits of the year (e.g., 98); HH Hour of day (1-12); HH24 Hour of day (0-23); MI Minute (0-59); SS Second (0-59);\par
+\par
+SELECT SYSDATE FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE, 'DY DD-MON-YYYY HH24:MI:SS') AS "CURRENT TIME" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE, 'DD-MON-YYYY') AS "DATE" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE, 'DD-MON-YY') AS "DATE" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE,  'DD -MONTH-YYYY') AS "DATE" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE,  'DD-MONTH-YY') AS "DATE" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE,   'DD-MONTH-YY HH24:MI:SS')  AS "DATE" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE,  'DD-MONTH-YYYY HH24:MI:SS') AS "DATE" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE,  'DD-MONTH-YYYY HH:MI:SS') AS "DATE" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE,  'DD-MON-YYYY') AS "DATE" FROM DUAL;\par
+SELECT TO_CHAR(SYSDATE,  'DD-MM-YYYY') AS "DATE" FROM DUAL;\par
+\par
+5.Display all Employees from Employees table who work in DEPARTMENT_ID 30, 50, 110?? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID IN (30, 50, 110);\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID =30 OR DEPARTMENT_ID =50 OR DEPARTMENT_ID =110;\par
+\par
+6.Display all Employees  from Employees table who work in DEPARTMENT_ID 30, 50, 110?? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID IN (30, 50, 110);\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID =30 OR DEPARTMENT_ID =50 OR DEPARTMENT_ID =110;\par
+\par
+7.Select all Employees from Employees who work in department 50 and 70 and Joining Year is 2005? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID IN (50, 70) AND TO_CHAR(HIRE_DATE, 'YYYY') = '2005';\par
+\par
+8.Select all column form Employees who has has salary more than 10000 and joined in 2006? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE SALARY >10000 AND TO_CHAR(HIRE_DATE, 'YYYY') = '2006';\par
+\par
+9.Display Employees who work in DEPARTMENT_ID in (70,80,90) and Salary > 10000 ? *\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID IN (70, 80, 90) AND SALARY  >'10000';\par
+\par
+10.Display all Employees from Employees table who joined either Jan 2005 or Mar 2007? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'JAN-2005' OR\par
+TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'MAR-2007';\par
+\par
+11.Display employees count who joined in the month of May? *\par
+SELECT TO_CHAR(HIRE_DATE, 'MONTH'), COUNT(EMPLOYEE_ID) FROM HR.EMPLOYEES\par
+GROUP BY TO_CHAR(HIRE_DATE, 'MONTH');\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\par
+\par
+\b\fs28 homework 03-08-2021\par
+SQL ASignment 5\par
+\b0\fs22 Display Department ID and number of employees in each department? *\par
+SELECT DISTINCT DEPARTMENT_ID, COUNT(EMPLOYEE_ID) FROM HR.EMPLOYEES\par
+ GROUP BY DEPARTMENT_ID;\par
+What is MAX,MIN, COUNT,AVG and SUM function. write sample queries for each of them? *\par
+SELECT MAX(SALARY), MIN(SALARY), COUNT(*), AVG(SALARY), SUM(SALARY) FROM HR.EMPLOYEES;\par
+Display Job ID and average salary of employees? *\par
+SELECT JOB_ID, AVG(SALARY) AS AVGSALARY FROM HR.EMPLOYEES GROUP BY JOB_ID;\par
+Display last name, Job ID of employees who get commission percentage? *\par
+SELECT LAST_NAME, JOB_ID, COMMISSION_PCT FROM HR.EMPLOYEES WHERE COMMISSION_PCT IS NOT NULL;\par
+Display Unique Job ID that where employee are drawing more than 15000 of salary? *\par
+SELECT DISTINCT JOB_ID FROM HR.EMPLOYEES WHERE SALARY > 15000;\par
+Select all Employees from Employees who has salary between 3000 and 7000 and DEPARTMENT_ID in 50, 60? *\par
+ SELECT * FROM HR.EMPLOYEES WHERE SALARY BETWEEN 3000 AND 7000 \par
+AND DEPARTMENT_ID IN(50, 60); \par
+Select all Employees from Employees who has salary between 3000 and 7000 OR DEPARTMENT_ID in 50, 60? *\par
+ SELECT * FROM HR.EMPLOYEES WHERE SALARY BETWEEN 3000 AND 7000 \par
+OR DEPARTMENT_ID IN(50, 60); \par
+Get me the count of number of record from each table form HR schema? *\par
+SELECT TABLE_NAME, NUM_ROWS FROM ALL_TABLE WHERE OWNER='HR';\par
+Display employees who joined in the month of May? *\par
+SELECT LAST_NAME, FIRST_NAME, TO_CHAR(HIRE_DATE, 'Month') from HR.EMPLOYEES\par
+WHERE TO_CHAR(HIRE_DATE, 'Month') = 'May';\par
+Display all Employees from Employees table who work in DEPARTMENT_ID 30, 50, 110 and get COMMISSION_PCT ? *\par
+SELECT * FROM HR.EMPLOYEES WHERE DEPARTMENT_ID IN(30, 50, 110) AND COMMISSION_PCT IS NOT NULL;\par
+Display all Employees from Employees table who work in DEPARTMENT_ID 30, 50, 110 OR get COMMISSION_PCT ? *\par
+SELECT * FROM HR.EMPLOYEES WHERE DEPARTMENT_ID IN(30, 50, 110) OR COMMISSION_PCT IS NOT NULL;\par
+Display Year wise count of employees from Employees from Employees who has salary between 7000 and 12000? *\par
+SELECT TO_CHAR(HIRE_DATE, 'YYYY'), COUNT(*) FROM HR.EMPLOYEES WHERE SALARY BETWEEN 7000 AND 12000 GROUP BY TO_CHAR(HIRE_DATE, 'YYYY') ORDER BY TO_CHAR(HIRE_DATE, 'YYYY');\par
+Display Month wise count of employees from Employees who has salary between less than 5000 in descending order by count? *\par
+SELECT TO_CHAR(HIRE_DATE, 'Month'), COUNT(*) FROM HR.EMPLOYEES WHERE SALARY < 5000 ORDER BY COUNT(*) DESC;\par
+\b\fs28 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\fs32 SQL Assignment 6 \par
+\b0\fs22 1.Select all column form Employees who has first name starting with 'C'? *\par
+Use HR.Employees Table; additional help listen recording\par
+SELECT * FROM EMPLOYEES WHERE FIRST_NAME LIKE 'C%';\par
+\par
+2.Select all column form Employees who has first name starting with 'C' or 'G'? *\par
+Use HR.Employees Table; additional help listen recording\par
+SELECT * FROM EMPLOYEES WHERE FIRST_NAME LIKE 'C%' OR FIRST_NAME LIKE 'G%';\par
+\par
+3.Select all column form Employees who has first name starting with 'Ca'? *\par
+Use HR.Employees Table; additional help listen recording\par
+SELECT * FROM HR.EMPLOYEES WHERE FIRST_NAME LIKE 'Ca%';\par
+\par
+4.Select all column form Employees who has first name ending with 'i'? *\par
+Use HR.Employees Table; additional help listen recording\par
+SELECT * FROM HR.EMPLOYEES WHERE FIRST_NAME LIKE '%i';\par
+\par
+5.Select all column form Employees who has first name ending with 'K' not case sensitive ? *\par
+Use HR.Employees Table; additional help listen recording\par
+SELECT * FROM HR.EMPLOYEES      WHERE UPPER(FIRST_NAME) LIKE UPPER ('%k');\par
+\par
+6.Select all column form Employees who has first name and last Name starting with same character? *\par
+Use HR.Employees Table; additional help listen recording\par
+SELECT * FROM HR.EMPLOYEES      WHERE SUBSTR(FIRST_NAME,1,1) = SUBSTR(LAST_NAME,1,1); \par
+\par
+7.what is substr function explain with example *\par
+Use HR.Employees Table; additional help listen recording\par
+SUBSTR IS A FUNCTION TO MANIPULATE THE STRING TO GET DISIRED OUTPUT.\par
+EXAMPLE: JHAPAT TO JHAPA \par
+SELECT SUBSTR('JHAPAT',1,5) FROM DUAL;\par
+\par
+8.Select all column form Employees who has joined between Jan 2005 and Jan 2006? *\par
+Use HR.Employees Table; additional help listen recording\par
+SELECT  * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'MON-YYYY') >='JAN-2005' AND TO_CHAR(HIRE_DATE, 'MON-YYYY') <='JAN-2006'; \par
+SELECT  * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'MON-YYYY') BETWEEN 'JAN-2005' AND 'JAN-2006'; \par
+SELECT * FROM HR.EMPLOYEES WHERE HIRE_DATE BETWEEN '01-JAN-2005' AND '31-JAN-2006';\par
+\par
+9.Select all Employees from Employees who has salary less than 3000 and joined in 2005 or belong to department 50? *\par
+Use HR.Employees Table; additional help listen recording\par
+SELECT \par
+*\par
+FROM HR.EMPLOYEES\par
+WHERE SALARY <3000 AND TO_CHAR(HIRE_DATE, 'YYYY') = '2005' AND DEPARTMENT_ID = 50; \par
+\par
+10.Display Year wise count of employees from Employees from Employees who has salary between 5000 and 12000? *\par
+additional help listen recording\par
+SELECT to_char(hire_date,'YYYY'),\par
+count(*) EMP_CNT,\par
+sum(salary)\par
+FROM hr.employees\par
+where salary between 5000 and 12000\par
+group by to_char(hire_date,'YYYY');\par
+\par
+11.Display Month wise count of employees from Employees from Employees who has salary between 5000 and 12000? *\par
+Like Jan 30, Feb 12 etc.....additional help listen recording\par
+SELECT to_char(hire_date,'mon'),\par
+count(*) EMP_CNT,\par
+sum(salary)\par
+FROM hr.employees\par
+where salary between 5000 and 12000\par
+group by to_char(hire_date,'mon'); \par
+\par
+12.Display all Employees from Employees table except year 2007? *\par
+Use <> or !=\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE NOT TO_CHAR(HIRE_DATE, 'YYYY') ='2007'; \par
+\par
+13.Display all Employees from Employees table except Department 30 and 40 *\par
+\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE NOT DEPARTMENT_ID IN(30, 40);\par
+\par
+14.Display all Employees from Employees table who joined either Jan 2005 or Mar 2007 and not belongs to Department 70? *\par
+Use OR clause\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE (TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'JAN-2005' OR TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'MAR-2007') AND NOT DEPARTMENT_ID = 70;\par
+\par
+15.Select all Employees from Employees who work in department 50 and 70 and receive commission ? *\par
+SELECT * FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID IN (50, 70) AND NOT COMMISSION_PCT = NULL;\par
+\par
+16.Select all Employees from Employees who work in who does not receive commission ? *\par
+SELECT * FROM EMPLOYEES WHERE COMMISSION_PCT = NULL;\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs32 SQL Assignment 7 \par
+\b0\fs22 1.Display Employees who joined before 2003 and after 2005 ? *\par
+SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN '2004';\par
+2.Display Employees who has job id = IT_PROG and work in department 50? *\par
+SELECT * FROM HR.EMPLOYEES  WHERE JOB_ID ='IT_PROG' AND DEPARTMENT_ID =50;\par
+3.Display Employees who has job id = IT_PROG and salary between 2500 and 7500? *\par
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID = 'IT_PROG' AND SALARY BETWEEN 2500 AND 7500;\par
+4.Display department ID, year, and Number of employees joined? *\par
+SELECT DEPARTMENT_ID,TO_CHAR(HIRE_DATE, 'YYYY'),COUNT(*) FROM HR.EMPLOYEES\par
+GROUP BY DEPARTMENT_ID, TO_CHAR(HIRE_DATE, 'YYYY') \par
+ORDER BY DEPARTMENT_ID,TO_CHAR(HIRE_DATE, 'YYYY');\par
+5.Display number of employees joined after 15th of the month? *\par
+SELECT * FROM EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'DD')  >='15';\par
+6.Perform union using Employees tables condition DEPARTMENT_ID in (70,80,90) and Salary > 10000 and COMMISSION_PCT is not empty? *\par
+SELECT * FROM HR.EMPLOYEES WHERE DEPARTMENT_ID IN(70,80,90) \par
+union\par
+SELECT * FROM HR.EMPLOYEES WHERE SALARY >10000 \par
+UNION\par
+SELECT * FROM HR.EMPLOYEES WHERE COMMISSION_PCT IS NOT NULL;\par
+7.Display employees details for those employees who has any vowel (a, e, i, o, or u) in last name? *\par
+SELECT * FROM HR.EMPLOYEES WHERE LAST_NAME LIKE '%a%' OR LAST_NAME LIKE '%e%' OR \par
+LAST_NAME LIKE '%i%' OR LAST_NAME LIKE '%o%' OR LAST_NAME LIKE '%u';\par
+8.Display employees who got same third character in first or last name? *\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    substr(first_name,3,1),\par
+    substr(last_name,3,1)\par
+FROM\par
+    hr.employees where substr(first_name,3,1) = substr(last_name,3,1);\par
+9.Display all Employees from Employees table except year 2007? *\par
+SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN '2007';\par
+10.Display all Employees from Employees table who joined either Jan 2005 or Mar 2007 and not belongs to Department 70? *\par
+  SELECT * FROM HR.EMPLOYEES WHERE (TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'JAN-2005' OR     TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'MAR-2007') AND DEPARTMENT_ID NOT IN (70);\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs32 SQL Assignment 8\par
+
+\pard\b0\f1\fs22\lang1033 -- QUESTION #1\par
+--Display the DEPARTMENT_ID, DEPARTMENT Name \par
+--and highest salary in each department form Employee Table? \par
+\par
+SELECT E.DEPARTMENT_ID, D.DEPARTMENT_NAME, J.MAX_SALARY FROM EMPLOYEES E\par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN JOBS J ON E.JOB_ID = J.JOB_ID;\par
+\par
+\par
+-- QUESTION # 2\par
+SELECT * FROM HR.EMPLOYEES \par
+WHERE \par
+TO_CHAR(HIRE_DATE, 'MM-YYYY') >='01-2005' AND TO_CHAR(HIRE_DATE, 'MM-YYYY') <='02-2007'\par
+AND\par
+DEPARTMENT_ID NOT IN (50,60)\par
+AND\par
+SALARY > 4500;\par
+\par
+\par
+-- QUESTION#3 Display unique City and department Name? *\par
+SELECT DISTINCT  CITY AS "NAMES" FROM LOCATIONS\par
+UNION\par
+SELECT DISTINCT DEPARTMENT_NAME "NAMES" FROM DEPARTMENTS;\par
+\par
+SELECT DISTINCT  CITY AS "NAMES" FROM LOCATIONS;\par
+SELECT DISTINCT DEPARTMENT_NAME "NAMES" FROM DEPARTMENTS;\par
+\par
+--QUESTION #4 Country wise employees highest and avg salary? *\par
+\par
+SELECT C.COUNTRY_NAME, MAX(E.SALARY) AS MAX_SALARY_COUNTRYWISE, ROUND(AVG(E.SALARY)) AS AVG_SALARY_COUNTRYWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+GROUP BY C.COUNTRY_NAME;\par
+\par
+--QUESTION#5 Display City wise avg salary?\par
+SELECT l.city, ROUND(AVG(E.SALARY)) AS AVG_SALARY_COUNTRYWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+GROUP BY L.CITY;\par
+\par
+--QUESTION#6 Display the region wise average, min and max salary? *\par
+SELECT R.REGION_NAME, MIN(E.SALARY) AS MIN_SALARY_REGIONWISE, MAX(E.SALARY) AS MAX_SALARY_REGIONWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+JOIN regions R ON C.REGION_ID = r.region_id\par
+GROUP BY R.REGION_NAME;\par
+\par
+\par
+--QUESTION#7 Display City wise number of employees in descending order? *\par
+SELECT l.city, COUNT(*) FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+GROUP BY L.CITY ORDER BY COUNT(*) DESC;\par
+\par
+\par
+--QUESTION#8 Display Region Name, City, Dept Name and hire year for all the employees *\par
+SELECT E.FIRST_NAME, E.LAST_NAME, r.region_name, l.city, d.department_name, TO_CHAR(E.HIRE_DATE,'YYYY') AS HIREYEAR\par
+FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+JOIN REGIONS R ON C.REGION_ID = r.region_id;\par
+\par
+\par
+--QUESTION#9 Display Job Title, Employee First Name and Department name of employees \par
+--who joined between 2003 and 2007? *\par
+--Use jobs table for Job Title\par
+SELECT J.JOB_TITLE, E.FIRST_NAME, d.department_name, TO_CHAR(E.HIRE_DATE,'YYYY') AS HIREYEAR\par
+FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN JOBS J ON E.JOB_ID = J.JOB_ID\par
+WHERE TO_CHAR(E.HIRE_DATE,'YYYY') >= 2003 AND TO_CHAR(E.HIRE_DATE,'YYYY') <= 2005;\par
+\par
+
+\pard\sa200\sl276\slmult1\b\f0\fs32\lang9\par
+SQL Assignment 9\par
+
+\pard\b0\f1\fs22\lang1033 --1.explain difference to_char and to_date? with example *\par
+'TO_CHAR' use only for sting and it doesn't accept  range but 'TO_DATE' accept range\par
+exam:\par
+SELECT\par
+'01/01/2021' AS STING,\par
+'01/01/2021' +1 AS STING_NEXT_DAY,\par
+SYSDATE AS CURRENT_DATE,\par
+SYSDATE+1 AS CURRENT_DATE_ADDED\par
+FROM DUAL; \par
+--2.Display Emp id, Emp First Name who work in department 'Sales' and belongs to \par
+--country 'United States of America' ? *\par
+SELECT\par
+   EMP.employee_id,EMP.first_name\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+where department_name='Sales' and country_name='United States of America';\par
+\par
+--3.Display Employees who get 10000 or work in department 30 and COMMISSION_PCT is NULL? *\par
+select * from employees\par
+where (salary=10000 or department_id=30) and commission_PCT is null;\par
+\par
+--4.Display Employee details who department name is 'Shipping' and MIN_SALARY range is 3000 to 5000 \par
+--and for region 'Americas'? *\par
+SELECT * FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+JOIN hr.regions RGN\par
+ON RGN.region_id = CTR.region_id\par
+WHERE department_name='Shipping' and salary between 3000 and 5000 \par
+and region_name='Americas';\par
+\par
+--5.Display Day name and number of employees joined? *\par
+select to_char(hire_date,'Day') as DayName, count(*) as Totals \par
+from employees group by to_char(hire_date,'Day') order by count(*) desc;\par
+\par
+--6.Display Employee details who department name IS 'IT' \par
+--AND MIN_SALARY range IS 5000 to 9000 and his city is 'Seattle' or 'Southlake'? *\par
+SELECT\par
+  *\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+where DEPT.department_name='IT' and EMP.salary between 5000 and 9000 \par
+and (city='Seattle' or city='Southlake');  \par
+\par
+--7.Display the average salary from employee table where commission values is not NULL? *\par
+SELECT AVG(SALARY) FROM EMPLOYEES\par
+WHERE commission_PCT is not null;\par
+\par
+--8.Display unique department and unique job id count from employee table \par
+--where department values is not NULL? *\par
+SELECT  department_id,job_id from employees\par
+where department_id is not null\par
+GROUP BY department_id,job_id;\par
+\par
+select distinct department_id,job_id from employees where department_id is not null;\par
+
+\pard\sa200\sl276\slmult1\b\f0\fs32\lang9\par
+ \par
+\fs28\par
+\par
+}
+ 
+>>>>>>> 088fcc13dcd65a46d152e663facc88f2c1608060
