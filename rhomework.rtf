@@ -260,6 +260,73 @@ select * from hr.employees\par
   or last_name like '%i%' or last_name like '%I%'\par
    or last_name like '%o%' or last_name like '%O%'\par
     or last_name like '%u%' or last_name like '%U%';\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs28 Assignment 9 (repeated homework) 03-23-2021\par
+\b0\fs22 --2.Display Emp id, Emp First Name who work in department 'Sales' and belongs \par
+--to country 'United States of America' ? *\par
+SELECT\par
+   Emp.employee_id,Emp.first_name\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+where department_name='Sales' and country_name='United States of America';\par
+\par
+\par
+--3.Display Employees who get 10000 or work in department 30 and COMMISSION_PCT is NULL? *\par
+Select * from employees\par
+where (salary = 10000 or department_id = 30) and commission_pct is null;\par
+--4.Display Employee details who department name is 'Shipping' and \par
+--MIN_SALARY range is 3000 to 5000 and for region 'Americas'? *\par
+SELECT\par
+  *\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+join hr.regions REG\par
+on CTR.region_id = REG.region_id\par
+join jobs JOb \par
+on EMP.job_id = JOB.job_id\par
+where department_name ='Shipping' and MIN_SALARY between 3000 and 5000\par
+and region_name ='Americas';\par
+\par
+--5.Display Day name and number of employees joined? *\par
+select to_char(hire_date, 'dy') as "day_name",count(employee_id) from employees\par
+group by to_char(hire_date, 'dy');\par
+--6.Display Employee details who department name IS 'IT' AND MIN_SALARY \par
+--range IS 5000 to 9000 and his city is 'Seattle' or 'Southlake'? *\par
+SELECT\par
+  *\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+where DEPT.department_name='IT' and EMP.salary between 5000 and 9000 \par
+and (city='Seattle' or city='Southlake');  \par
+\par
+\par
+--7.Display the average salary from employee table where commission values is not NULL? *\par
+select  avg(salary) from employees\par
+where commission_pct is not null;\par
+\par
+--8.Display unique department and unique job id count from employee table \par
+--where department values is not NULL? *\par
+SELECT  department_id,job_id from employees\par
+where department_id is not null\par
+GROUP BY department_id,job_id;\par
+\par
+select distinct department_id,job_id from employees where department_id is not null;\par
 \b\par
 }
  

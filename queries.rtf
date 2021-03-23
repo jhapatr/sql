@@ -1734,5 +1734,418 @@ select * from hr.employees\par
   or last_name like '%i%' or last_name like '%I%'\par
    or last_name like '%o%' or last_name like '%O%'\par
     or last_name like '%u%' or last_name like '%U%';\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\ul\b\fs28 SQL Notes 03-22-2021 queries\par
+\ulnone\b0\fs22 select * from hr.employees\par
+where ((TO_CHAR(hire_date, 'YYYY') < '2003'))\par
+\par
+\par
+select * from hr.employees\par
+where\par
+((TO_CHAR(hire_date, 'YYYY') < '2003')) or\par
+(TO_CHAR(hire_date, 'YYYY') > '2005')\par
+order by hire_date;\par
+\par
+\par
+select * From Hr.employees where to_char(hire_date, 'YYYY')not between 2003 and 2005;\par
+\par
+SELECT * FROM HR.EMPLOYEES WHERE (JOB_ID = 'IT_PROG')\par
+AND (DEPARTMENT_ID =50);\par
+\par
+select * from hr.employees where\par
+JOB_ID = 'IT_PROG' AND DEPARTMENT_ID = 50;\par
+\par
+SELECT\par
+*\par
+FROM HR.EMPLOYEES\par
+WHERE SALARY BETWEEN 2500 AND 7500 AND JOB_id = 'IT_PROG'\par
+\par
+select * from hr.employees where job_id = 'IT_PROG' and salary between 2500 and 7500;\par
+\par
+SELECT\par
+    department_id,\par
+    TO_CHAR(hire_date,'YYYY'),\par
+    COUNT(employee_id)\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id,\par
+    TO_CHAR(hire_date,'YYYY')\par
+ORDER BY\par
+    department_id;\par
+   \par
+   \par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id)\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+ORDER BY\par
+    department_id;\par
+   \par
+   \par
+SELECT\par
+    department_id,\par
+    TO_CHAR(hire_date,'YYYY'),\par
+    COUNT(employee_id)\par
+FROM\par
+    hr.employees\par
+where department_id = 100\par
+GROUP BY\par
+    department_id,\par
+    TO_CHAR(hire_date,'YYYY')\par
+ORDER BY\par
+    department_id;\par
+   \par
+   \par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id)\par
+FROM\par
+    hr.employees\par
+where department_id = 100\par
+GROUP BY\par
+    department_id\par
+ORDER BY\par
+    department_id;\par
+   \par
+   \par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+ORDER BY\par
+    department_id;\par
+\par
+select * from ()Inline1;\par
+\par
+select * from\par
+(\par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+ORDER BY\par
+    department_id\par
+)Inline1\par
+where CNT_EMP_DEPTWISE > 5;\par
+\par
+\par
+select department_id,CNT_EMP_DEPTWISE  from\par
+(\par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+ORDER BY\par
+    department_id\par
+)Inline1\par
+where CNT_EMP_DEPTWISE > 5;\par
+\par
+\par
+select department_id,CNT_EMP_DEPTWISE  from\par
+(\par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+ORDER BY\par
+    department_id\par
+)Inline1\par
+where CNT_EMP_DEPTWISE > 5;\par
+\par
+select department_id, CNT_EMP_DEPTWISE  from\par
+(\par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+ORDER BY\par
+    department_id\par
+)Inline1\par
+where CNT_EMP_DEPTWISE > 5;\par
+\par
+\par
+select\par
+Inline1.department_id,\par
+Inline1.CNT_EMP_DEPTWISE\par
+from (\par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+)Inline1;\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+\par
+SELECT\par
+    EMP.employee_id,\par
+    EMP.first_name,\par
+    EMP.last_name,\par
+    EMP.email,\par
+    EMP.phone_number,\par
+    EMP.hire_date,\par
+    EMP.job_id,\par
+    EMP.salary,\par
+    EMP.commission_pct,\par
+    EMP.manager_id,\par
+    EMP.department_id\par
+FROM\par
+    hr.employees EMP;\par
+\par
+\par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE --must be alias\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+having  COUNT(employee_id) > 5;\par
+\par
+select\par
+Inline5.department_id,\par
+Inline5.CNT_EMP_DEPTWISE\par
+from (\par
+SELECT\par
+    department_id,\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    department_id\par
+)Inline5\par
+where Inline5.CNT_EMP_DEPTWISE > 5;\par
+\par
+select count(employee_id)\par
+from hr.employees\par
+where to_char(hire_date, 'dd')>'15';\par
+\par
+SELECT\par
+    COUNT(employee_id) CNT_EMP_DEPTWISE --must be alias\par
+FROM\par
+    hr.employees;\par
+   \par
+SELECT\par
+    department_id,\par
+    TO_CHAR(hire_date,'YYYY') Joining_year,\par
+    COUNT(employee_id)\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+     department_id,\par
+    TO_CHAR(hire_date,'YYYY');\par
+   \par
+   \par
+SELECT\par
+    department_id,\par
+    TO_CHAR(hire_date,'YYYY') Joining_year,\par
+    COUNT(employee_id)\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+     department_id,\par
+    TO_CHAR(hire_date,'YYYY')\par
+having TO_CHAR(hire_date,'YYYY') > 2005;\par
+\par
+select * from\par
+(\par
+SELECT\par
+    department_id,\par
+    TO_CHAR(hire_date,'YYYY') Joining_year,\par
+    COUNT(employee_id)\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+     department_id,\par
+    TO_CHAR(hire_date,'YYYY')\par
+)Inline1\par
+where Joining_year > 2005;\par
+\par
+select * from hr.employees where department_id=70 and salary >10000 and commission_pct is not null\par
+union\par
+select * from hr.employees where department_id=80 and salary >10000 and commission_pct is not null\par
+union\par
+select * from hr.employees where department_id=90 and salary >10000 and commission_pct is not null;\par
+\par
+SELECT\par
+    *\par
+FROM\par
+    hr.employees\par
+WHERE\par
+    last_name LIKE '%a%'\par
+    OR last_name LIKE '%A%'\par
+    OR last_name LIKE '%e%'\par
+    OR last_name LIKE '%E%'\par
+    OR last_name LIKE '%i%'\par
+    OR last_name LIKE '%I%'\par
+    OR last_name LIKE '%o%'\par
+    OR last_name LIKE '%O%'\par
+    OR last_name LIKE '%u%'\par
+    OR last_name LIKE '%U%';\par
+   \par
+select * from hr.employees where\par
+substr(first_name, 3,1)= substr(last_name, 3,1);\par
+\par
+\par
+SELECT * FROM HR.employees  WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN 2007;\par
+\par
+select * from HR.employees where (to_char(hire_date,'yyyy'))!='2007';\par
+\par
+\par
+SELECT *  FROM HR.EMPLOYEES\par
+ WHERE ((TO_CHAR(HIRE_DATE,'YYYY') = '2005' AND  TO_CHAR(HIRE_DATE,'MON') = 'JAN'))\par
+    OR ((TO_CHAR(HIRE_DATE,'YYYY') = '2007' AND  TO_CHAR(HIRE_DATE,'MON') = 'MAR'))\par
+  AND DEPARTMENT_ID != 70;\par
+\par
+\par
+SELECT * FROM HR.EMPLOYEES WHERE\par
+(TO_CHAR(HIRE_DATE,'MON/YYYY')='JAN/2005' OR TO_CHAR(HIRE_DATE,'MON/YYYY')='MAR/2007')\par
+and DEPARTMENT_ID<>'70';\par
+\par
+Select\par
+  *\par
+FROM\par
+    hr.employees\par
+WHERE\par
+    ( to_char(hire_date, 'MON-YY') ='JAN-05'\par
+      OR to_char(hire_date, 'MON-YY') = 'MAR-07' )\par
+    AND department_id !=70;\par
+   \par
+   \par
+SELECT\par
+    dept.department_id,\par
+    dept.department_name,\par
+    MAX(emp.salary)\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+GROUP BY\par
+    dept.department_id,\par
+    dept.department_name;\par
+   \par
+   \par
+SELECT\par
+    dept.department_id,\par
+    dept.department_name,\par
+    MAX(salary)\par
+FROM\par
+    hr.departments dept\par
+    JOIN hr.employees emp ON dept.department_id = emp.department_id\par
+GROUP BY\par
+    dept.department_id,\par
+    dept.department_name;\par
+   \par
+   \par
+SELECT\par
+    dept.department_id,\par
+    dept.department_name,\par
+    MAX(salary)\par
+FROM\par
+    hr.departments dept\par
+    JOIN hr.employees emp ON dept.department_id = emp.department_id\par
+GROUP BY\par
+    dept.department_id,\par
+    dept.department_name;\par
+   \par
+   \par
+SELECT\par
+    dept.department_name,\par
+    MAX(salary)\par
+FROM\par
+    hr.departments dept\par
+    JOIN hr.employees emp ON dept.department_id = emp.department_id\par
+GROUP BY\par
+    dept.department_id,\par
+    dept.department_name;\par
+   \par
+   \par
+SELECT\par
+    dept.department_id,\par
+    dept.department_name,\par
+    MAX(salary)\par
+FROM\par
+    hr.departments dept\par
+    JOIN hr.employees emp ON dept.department_id = emp.department_id\par
+GROUP BY\par
+    dept.department_id,\par
+    dept.department_name;\par
+   \par
+SELECT\par
+    d.department_id,\par
+    d.department_name,\par
+    MAX(e.salary) AS salary\par
+FROM\par
+    hr.departments d,\par
+    hr.employees e\par
+WHERE\par
+    d.department_id = e.department_id\par
+GROUP BY\par
+    d.department_id,\par
+    d.department_name;\par
+   \par
+   \par
+SELECT DISTINCT\par
+    loc.city  city,\par
+    dept.department_name deptname\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON loc.location_id = dept.location_id;\par
+\par
+SELECT\par
+    loc.city,\par
+    dept.department_name\par
+FROM\par
+    hr.locations loc\par
+    JOIN hr.departments dept ON loc.location_id = dept.location_id\par
+GROUP BY\par
+    loc.city,\par
+    dept.department_name;\par
+   \par
+SELECT\par
+   ctr.country_name,\par
+    MAX(salary),\par
+    round(AVG(salary))\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    JOIN hr.countries ctr ON loc.country_id = ctr.country_id\par
+GROUP BY\par
+    ctr.country_name;\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 }
  
