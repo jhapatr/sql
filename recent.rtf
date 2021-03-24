@@ -59,6 +59,15 @@ SALARY > 4500;\par
 \par
 \par
 -- QUESTION#3 Display unique City and department Name? *\par
+\par
+select distinct \par
+Loc.city,DEPT.department_name\par
+from employees EMP\par
+jOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id;\par
+\par
 SELECT DISTINCT  CITY AS "NAMES" FROM LOCATIONS\par
 UNION\par
 SELECT DISTINCT DEPARTMENT_NAME "NAMES" FROM DEPARTMENTS;\par
