@@ -2147,5 +2147,408 @@ FROM\par
 GROUP BY\par
     ctr.country_name;\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\ul\b\fs28 SQL Notes 03-23-2021 queries\par
+\ulnone\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+SELECT\par
+    dept.department_id,\par
+    dept.department_name,\par
+    MAX(emp.salary) AS highest_salary\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON dept.department_id = emp.department_id\par
+GROUP BY\par
+    dept.department_id,\par
+    dept.department_name;\par
+   \par
+   \par
+SELECT\par
+    *\par
+FROM\par
+    hr.employees\par
+WHERE\par
+    ( hire_date BETWEEN '01-JAN-05' AND '28-FEB-07' )\par
+    AND (department_id != 50 AND department_id != 60) -- department_id  not in (50,60)\par
+    AND ( salary > 4500 );\par
+   \par
+SELECT\par
+    *\par
+FROM\par
+    hr.employees\par
+WHERE\par
+    ( hire_date BETWEEN '01-JAN-05' AND '28-FEB-07' )\par
+    AND  department_id  not in (50,60)\par
+    AND  salary > 4500 ;\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+where hire_date = '21-SEP-05';  \par
+\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+where hire_date = '21/SEP/2005';  \par
+\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'DD/MON/YYYY') = '21/SEP/05';  \par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'DD/MON/YYYY') = '21/SEP/05';  \par
+\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'YYYY') = '2005';\par
+\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'YYYY') between 2005 and 2007;\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'MM') between 1 and 3;\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+where to_char(hire_date,'DD') between 1 and 5;\par
+\par
+select reg.region_name,\par
+       round(avg(salary)),\par
+       min(salary),\par
+       max(salary)\par
+from\par
+    hr.employees emp\par
+join hr.departments dept on emp.department_id=dept.department_id\par
+join hr.locations loc on loc.location_id = dept.location_id\par
+join hr.countries coun on coun.country_id=loc.country_id\par
+join hr.regions reg on reg.region_id=coun.region_id\par
+group by reg.region_name;\par
+\par
+\par
+SELECT LOC.CITY,\par
+COUNT(EMP.EMPLOYEE_ID) AS EMPCOUNT\par
+FROM HR.EMPLOYEES EMP\par
+JOIN HR.DEPARTMENTS DEPT\par
+ON EMP.DEPARTMENT_ID = DEPT.DEPARTMENT_ID\par
+JOIN HR.LOCATIONS LOC\par
+ON DEPT.LOCATION_ID = LOC.LOCATION_ID\par
+GROUP BY LOC.CITY\par
+ORDER BY COUNT(EMP.EMPLOYEE_ID) DESC;\par
+\par
+SELECT\par
+    loc.city,\par
+    COUNT(emp.employee_id) AS empcount\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+GROUP BY\par
+    loc.city\par
+ORDER BY\par
+   2 DESC;\par
+   \par
+   \par
+SELECT\par
+    reg.region_name AS "REGION NAME",\par
+    dept.department_name AS "DEPARTMENT NAME",\par
+    loc.city AS "CITY NAME"\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    JOIN hr.countries cou ON loc.country_id = cou.country_id\par
+    JOIN hr.regions reg ON cou.region_id = reg.region_id;\par
+   \par
+   \par
+SELECT distinct\par
+    reg.region_name,\par
+    dep.department_name,\par
+    loc.city,\par
+    TO_CHAR(emp.hire_date,'yyyy') AS hire_year\par
+FROM\par
+    hr.regions reg\par
+    JOIN hr.countries coun ON reg.region_id = coun.region_id\par
+    JOIN hr.locations loc ON coun.country_id = loc.country_id\par
+    JOIN hr.departments dep ON loc.location_id = dep.location_id\par
+    JOIN hr.employees emp ON dep.department_id = emp.department_id;\par
+   \par
+ \par
+SELECT\par
+    emp.EMPLOYEE_ID,\par
+    reg.region_name,\par
+    dep.department_name,\par
+    loc.city\par
+FROM\par
+    hr.regions reg\par
+    JOIN hr.countries coun ON reg.region_id = coun.region_id\par
+    JOIN hr.locations loc ON coun.country_id = loc.country_id\par
+    JOIN hr.departments dep ON loc.location_id = dep.location_id\par
+    JOIN hr.employees emp ON dep.department_id = emp.department_id;\par
+   \par
+SELECT\par
+    first_name,\par
+    department_name,\par
+    job_title\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.jobs job ON job.job_id = emp.job_id\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+WHERE\par
+    TO_CHAR(hire_date,'YYYY') BETWEEN '2003' AND '2007';\par
+   \par
+SELECT\par
+    department_id\par
+FROM\par
+    hr.employees;    \par
+\par
+SELECT\par
+    distinct department_id\par
+FROM\par
+    hr.employees;\par
+\par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+    dept.department_name,\par
+    ctr.country_name\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    JOIN hr.countries ctr ON loc.country_id = ctr.country_id\par
+WHERE\par
+    dept.department_name = 'Sales'\par
+    AND ctr.country_name = 'United States of America';\par
+   \par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+    dept.department_name,\par
+    ctr.country_name\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    JOIN hr.countries ctr ON loc.country_id = ctr.country_id\par
+WHERE\par
+    dept.department_name = 'Sales'\par
+    AND\par
+    ctr.country_name = 'United States of America';\par
+SELECT *\par
+FROM HR.employees\par
+WHERE\par
+(SALARY=10000   OR DEPARTMENT_ID = 30)\par
+AND COMMISSION_PCT is NULL;\par
+\par
+\par
+SELECT *\par
+FROM hr.employees\par
+WHERE salary = 10000\par
+OR department_id = 30\par
+AND commission_pct IS NULL;\par
+\par
+select * from HR.employees where\par
+salary > 10000\par
+or\par
+(department_id = 30 and commission_pct is null);\par
+\par
+SELECT\par
+    emp.*,min_salary\par
+FROM\par
+    hr.jobs jobs\par
+    JOIN hr.employees emp ON jobs.job_id = emp.job_id\par
+    JOIN hr.departments dpt ON emp.department_id = dpt.department_id\par
+    JOIN hr.locations loc ON dpt.location_id = loc.location_id\par
+    JOIN hr.countries ctry ON loc.country_id = ctry.country_id\par
+    JOIN hr.regions reg ON ctry.region_id = reg.region_id\par
+WHERE\par
+    dpt.department_name = 'Shipping'\par
+    AND\par
+    ( jobs.min_salary BETWEEN 3000 AND 5000 )\par
+    AND\par
+    reg.region_name = 'Americas';\par
+   \par
+SELECT\par
+   distinct JOB_ID\par
+FROM\par
+    hr.employees emp\par
+    where department_id = 50;\par
+   \par
+SELECT\par
+    substr(TO_CHAR(hire_date,'Day'),1,3) "Day Name",\par
+    COUNT(*)\par
+FROM\par
+    hr.employees e\par
+GROUP BY\par
+    substr(TO_CHAR(hire_date,'Day'),1,3);\par
+   \par
+   \par
+SELECT TO_CHAR(HIRE_DATE, 'DY') AS DayName, COUNT(*)\par
+FROM HR.EMPLOYEES\par
+GROUP BY  TO_CHAR(HIRE_DATE, 'DY') ;\par
+\par
+\par
+SELECT\par
+    emp.first_name,\par
+    emp.last_name,\par
+    dept.department_name,\par
+    j.min_salary,\par
+    loc.city\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    JOIN hr.countries      coun ON coun.country_id = loc.country_id\par
+    JOIN hr.regions        reg ON reg.region_id = coun.region_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+WHERE\par
+        dept.department_name = 'IT'\par
+    AND j.min_salary BETWEEN 5000 AND 9000\par
+    AND loc.city IN ( 'Seattle', 'Southlake' );\par
+   \par
+    SELECT\par
+    emp.first_name,\par
+    emp.last_name,\par
+    dept.department_name,\par
+    j.min_salary,\par
+    loc.city\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    JOIN hr.countries      coun ON coun.country_id = loc.country_id\par
+    JOIN hr.regions        reg ON reg.region_id = coun.region_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+WHERE\par
+        dept.department_name = 'IT'\par
+        AND loc.city IN ( 'Seattle', 'Southlake' )\par
+    AND j.min_salary BETWEEN 5000 AND 9000;\par
+   \par
+select Avg(salary) from hr.employees where COMMISSION_PCT is not NULL;\par
+\par
+SELECT DEPARTMENT_ID, COUNT(JOB_ID)\par
+FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID IS NOT NULL\par
+GROUP BY DEPARTMENT_ID;\par
+\par
+SELECT DEPARTMENT_ID, COUNT( distinct JOB_ID)\par
+FROM HR.EMPLOYEES\par
+WHERE DEPARTMENT_ID IS NOT NULL\par
+GROUP BY DEPARTMENT_ID;\par
+\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 }
  

@@ -269,7 +269,7 @@ SYSDATE AS CURRENT_DATE,\par
 SYSDATE+1 AS CURRENT_DATE_ADDED\par
 FROM DUAL; \par
 \ul\b QUERY IS NOT RUN BECAUSE  STING IS A ALPHAVET , WE CAN NOT ADD ANY \par
-NUMBER WITH  ALPHAVET EXAM ('01/01/2021'(STING) CANN'T ADD ANY NUMBER SO '01/01/2021' +1 AS STING_NEXT_DAY IS NOT RUN.,\par
+NUMBER WITH  ALPHAVET. EXAM ('01/01/2021'(STING) CANN'T ADD ANY NUMBER SO '01/01/2021' +1 AS STING_NEXT_DAY IS NOT RUN.,\par
 \ulnone\b0 SELECT \par
 '01/01/2021' AS STING,\par
 TO_DATE('01/01/2021','DD/MM/YYYY') AS DATE_FORMAT,\par
@@ -283,7 +283,7 @@ FROM DUAL;\par
 \ulnone\b0\par
 SELECT * FROM HR.EMPLOYEES\par
 WHERE SALARY<3000 AND (TO_CHAR(HIRE_DATE, 'YYYY')='2005' OR DEPARTMENT_ID =50);\par
-\ul\b WHEN 'OR' and 'AND' BOTH COMMAND NEED TO USE TOGATHER IT GIVES DIFFERENT ANSWER ACCORDING TO USE THE COMMA (,). AT THAT COMDITION THE BEST WAY TO DETERMINE THE ANSWER ACCORDIING USER OWER'S NECCESITY.\par
+\ul\b WHEN 'OR' and 'AND' BOTH COMMAND NEED TO USE TOGATHER IT GIVES DIFFERENT ANSWER ACCORDING TO USE THE bracket (,). AT THAT COMDITION THE BEST WAY TO DETERMINE THE ANSWER ACCORDIING USER OWER'S NECCESITY.\par
 \ulnone\b0 SELECT TO_CHAR(HIRE_DATE, 'YYYY'),SALARY,DEPARTMENT_ID FROM HR.EMPLOYEES\par
 WHERE SALARY<3000 AND (TO_CHAR(HIRE_DATE, 'YYYY')='2005' OR DEPARTMENT_ID =50);\par
 \b .SELECT\par
@@ -416,6 +416,138 @@ where department_id is not null\par
 GROUP BY department_id,job_id;\par
 \par
 select distinct department_id,job_id from employees where department_id is not null;\par
-\b\par
+\b >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\fs28 Assignment 10 ( 03-23-2021)\fs22\par
+--1.Display employee and department name name in which he is either \par
+--'Sales Representative' or 'Purchasing Manager.? *\par
+\par
+SELECT\par
+    emp.first_name,\par
+    emp.last_name,\par
+    dept.department_name,\par
+     j.job_title\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+WHERE\par
+        j.job_title like '%Sales Representative%' or j.job_title like '%Purchasing Manager%';\par
+        j.job_title in ('Sales Representative', 'Purchasing Manager')\par
+        j.job_title = 'Sales Representative' or j.job_title = 'Purchasing Manager';\par
+ --2.Display city, and number of departments where department has more than 5 employees? *\par
+select * from\par
+(\par
+select    \par
+    loc.city,\par
+    count(dept.department_id) as number_departments\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+group by loc.city \par
+) inline1\par
+WHERE \par
+        number_departments >5\par
+        \par
+ --3.Display details of manager who manages more than 5 employees? *\par
+ select manager_id as "manager",count(*) \par
+ from employees\par
+ group by manager_id \par
+ having (count(*))>5;\par
+ \par
+--4.Display the month in which more than 5 employees joined in any department located in Sydney? *\par
+select to_char(emp.hire_date, 'mon'),emp.department_id,count(*) \par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    where city = 'Sydney'\par
+    group by to_char(emp.hire_date, 'mon'),emp.department_id\par
+    having   (count(*)) >5;\par
+\par
+\par
+select * from\par
+(\par
+select to_char(emp.hire_date, 'mon'),emp.department_id,count(*) as employee_join\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    where city ='Sydney'\par
+group by to_char(emp.hire_date, 'mon'),emp.department_id\par
+)inline1\par
+where  employee_join >5;\par
+\par
+--5.Display the first name for employees where last name contain character \lquote  b \rquote  ? *\par
+select first_name,last_name\par
+from employees\par
+where last_name like '%b%';\par
+--6.which country wise employees highest and avg salary? *\par
+SELECT\par
+   ctr.country_name,\par
+    MAX(salary),\par
+    round(AVG(salary))\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    JOIN hr.countries ctr ON loc.country_id = ctr.country_id\par
+GROUP BY\par
+    ctr.country_name;\par
+\par
+--7.Display Department and City wise highest and lowest salary? *\par
+SELECT\par
+   emp.department_id,\par
+   loc.city ,\par
+    MAX(salary),\par
+    min(salary)\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+GROUP BY\par
+    emp.department_id,loc.city;\par
+--8.Display the region wise average salary? *\par
+select \par
+    reg.region_name ,\par
+    round(avg(emp.salary))\par
+From hr.employees emp\par
+join hr.departments dept on emp.department_id = dept.department_id\par
+join hr.locations   loc  on dept.location_id = loc.location_id\par
+join hr.countries   con  on loc.country_id  = con.country_id\par
+join hr.regions     reg  on con.region_id =  reg.region_id\par
+Group by reg.region_name \par
+\par
+--9.Display employees who joined in the current year? *\par
+SELECT * FROM EMPLOYEES WHERE TO_CHAR(HIRE_DATE,'YYYY')=TO_CHAR(SYSDATE, 'YYYY')\par
+--10.Display differences between the highest salary and lowest salary in the department?\par
+SELECT \par
+department_id,\par
+count(*),\par
+max(salary),\par
+min(salary),\par
+max(salary)-min(salary) as "difference"\par
+FROM hr.employees\par
+group by department_id;\par
+--11.Display Employee count based on phone area code(First 3 digit of phone number) \par
+--ascending order by count of employee? *\par
+SELECT\par
+    substr(phone_number, 1, 3),\par
+    COUNT(*)\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    substr(phone_number, 1, 3)\par
+--12.Select all Employees from Employees who joined company between 'JUN-03 and 'JUN-07' \par
+--and phone area code start with 515? *\par
+select * from employees \par
+where to_char(hire_date, 'mm-yy') >='06-03' and to_char(hire_date, 'mm-yy')<='06-07'\par
+and substr(phone_number,1,3) ='515';\par
+--13.Display job_id wise number of employees in descending order? *\par
+select job_id,count(*)\par
+from employees\par
+group by job_id\par
+order by 2 desc;\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 }
  
