@@ -292,15 +292,10 @@ join hr.departments dept on emp.department_id = dept.department_id\par
 join hr.locations   loc  on dept.location_id = loc.location_id\par
 join hr.countries   con  on loc.country_id  = con.country_id\par
 join hr.regions     reg  on con.region_id =  reg.region_id\par
-Group by reg.region_name  ;\par
+Group by reg.region_name \par
 \par
 --9.Display employees who joined in the current year? *\par
-\par
-\par
-\par
-SELECT * FROM EMPLOYEES WHERE TO_CHAR(HIRE_DATE,'YYYY')=TO_CHAR(SYSDATE, 'YYYY') \par
-\par
-\par
+SELECT * FROM EMPLOYEES WHERE TO_CHAR(HIRE_DATE,'YYYY')=TO_CHAR(SYSDATE, 'YYYY')\par
 --10.Display differences between the highest salary and lowest salary in the department?\par
 SELECT \par
 department_id,\par
@@ -312,12 +307,15 @@ FROM hr.employees\par
 group by department_id;\par
 --11.Display Employee count based on phone area code(First 3 digit of phone number) \par
 --ascending order by count of employee? *\par
-\par
-select phone_number,count(*) from hr.employees where substr(phone_number,1,3)not run\par
-\par
+SELECT\par
+    substr(phone_number, 1, 3),\par
+    COUNT(*)\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    substr(phone_number, 1, 3)\par
 --12.Select all Employees from Employees who joined company between 'JUN-03 and 'JUN-07' \par
 --and phone area code start with 515? *\par
---substr(PHONE_NUMBER,1,3) = '515'\par
 select * from employees \par
 where to_char(hire_date, 'mm-yy') >='06-03' and to_char(hire_date, 'mm-yy')<='06-07'\par
 and substr(phone_number,1,3) ='515';\par
