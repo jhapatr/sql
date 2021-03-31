@@ -1,0 +1,558 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil Courier New;}{\f1\fnil\fcharset0 Courier New;}{\f2\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\b\f0\fs28\lang1033\ltrmark March \ltrmark 30, \ltrmark 2021\par
+\par
+\ul\f1\par
+\par
+\par
+Inner joins\par
+\ulnone\b0\fs22\par
+\b SELECT\par
+\b0     emp.employee_id as e_empid,\par
+    emp.first_name as e_firstname,\par
+    emp.last_name as e_lastname,\par
+   emp. email as e_email,\par
+   emp. phone_number as e_phonenumber,\par
+    emp.hire_date as e_hiredate,\par
+   emp. job_id as e_jobid,\par
+    emp.salary as e_salary,\par
+   emp. commission_pct as e_commipct,\par
+   emp. manager_id as e_managerid,\par
+    emp.department_id as e_departmentid,\par
+    dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid\par
+FROM\par
+         hr.employees emp\par
+ \b JOIN\b0  hr.departments dept ON emp.department_id = dept.department_id \par
+\par
+\b SELECT\b0\par
+    emp.first_name,\par
+    emp.employee_id as empempid,\par
+    emp.job_id as empjobid,\par
+    j.job_id as jobjobid,\par
+    emp.department_id as empdeparid,\par
+    dept.department_id as deptdepartid,\par
+    dept.location_id as deptlocid,\par
+    loc.location_id as loclocid,\par
+    coun.country_id as concountryid,\par
+    loc.country_id as locconid,\par
+    coun.region_id as conregid,\par
+    reg.region_id as regregid\par
+FROM\par
+         hr.employees emp\par
+    \b JOIN \b0 hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    JOIN hr.countries      coun ON coun.country_id = loc.country_id\par
+    JOIN hr.regions        reg ON reg.region_id = coun.region_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id;\par
+\par
+106 similar records displayed from above 6 tables inner join.\par
+\par
+\b SELECT\b0\par
+    emp.first_name,\par
+    emp.employee_id as empempid,\par
+    emp.job_id as empjobid,\par
+    j.job_id as jobjobid,\par
+    emp.department_id as empdeparid,\par
+    dept.department_id as deptdepartid,\par
+    dept.location_id as deptlocid,\par
+    loc.location_id as loclocid,\par
+    coun.country_id as concountryid,\par
+    loc.country_id as locconid,\par
+    coun.region_id as conregid,\par
+    reg.region_id as regregid\par
+FROM\par
+         hr.employees emp\par
+    \b JOIN\b0  hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    JOIN hr.countries      coun ON coun.country_id = loc.country_id\par
+    JOIN hr.regions        reg ON reg.region_id = coun.region_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+    join hr.job_history jh  on emp.employee_id = jh.employee_id\par
+\par
+when we inner join the "Job_history" table with above 6 tables,displad only 10 records.\par
+\par
+ \b SELECT\par
+\b0     emp.first_name,\par
+    emp.employee_id    AS empempid,\par
+    emp.job_id         AS empjobid,\par
+    j.job_id           AS jobjobid\par
+\par
+FROM\par
+         hr.employees emp\par
+    \b JOIN\b0  hr.jobs j ON j.job_id = emp.job_id ;\par
+ \par
+when we inner join the employees and jobs tables 107 records are displayed (107 from emp. and \par
+\par
+\b SELECT\par
+\b0     emp.first_name,\par
+    emp.employee_id       AS empempid,\par
+    emp.department_id     AS edeptid,\par
+    dept.department_id    AS d_departmentid\par
+FROM\par
+         hr.employees emp\par
+    \b JOIN \b0 hr.departments dept ON emp.department_id = dept.department_id ;\par
+  \par
+106 records displayed ( 106 from emp("Kimberely"-employee_id-178 is not included)\par
+\par
+\b Select\par
+\b0     dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid,\par
+    loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province as l_stateprovince,\par
+    loc.city           as l_city,\par
+    loc.country_id      as l_countryid\par
+    from\par
+    hr.departments dept\par
+    \b join \b0 hr.locations loc on dept.location_id = loc.location_id\par
+\par
+\b Select\par
+\b0     dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid,\par
+    loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province as l_stateprovince,\par
+    loc.city           as l_city,\par
+    loc.country_id      as l_countryid\par
+    from\par
+    hr.locations loc \par
+     \b join\b0  hr.departments dept on dept.location_id = loc.location_id\par
+\par
+\b Select\par
+\b0     loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province as l_stateprovince,\par
+    loc.city           as l_city,\par
+    loc.country_id      as l_countryid,\par
+    con.country_id    AS c_conid,\par
+    con.country_name   as cname,\par
+    con. region_id      as cregionid\par
+    from\par
+    hr.locations loc \par
+     \b join\b0  hr.countries con on loc.country_id = con.country_id\par
+\b SELECT\par
+\b0     con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid,\par
+    reg.region_id       as r_regionid,\par
+    reg.region_name     as r_regionname\par
+FROM\par
+    hr.countries con\par
+ \b join \b0 hr.regions reg ON con.region_id = reg.region_id\par
+\par
+\b SELECT\par
+\b0     con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid,\par
+    reg.region_id       as r_regionid,\par
+    reg.region_name     as r_regionname\par
+FROM\par
+    hr.regions reg\par
+  \b join\b0  hr.countries con ON con.region_id = reg.region_id\par
+\par
+\b SELECT\par
+\b0     emp.employee_id as e_empid,\par
+    emp.first_name as e_firstname,\par
+    emp.last_name as e_lastname,\par
+   emp. email as e_email,\par
+   emp. phone_number as e_phonenumber,\par
+    emp.hire_date as e_hiredate,\par
+   emp. job_id as e_jobid,\par
+    emp.salary as e_salary,\par
+   emp. commission_pct as e_commipct,\par
+   emp. manager_id as e_managerid,\par
+    emp.department_id as e_departmentid,\par
+    job.employee_id as job_empid,\par
+    job.start_date as job_startdate,\par
+    job.end_date as job_enddate,\par
+    job.job_id   as job_jobid,\par
+    job.department_id as job_deptid\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.job_history job ON emp.employee_id = job.employee_id\par
+\par
+\b SELECT\par
+\b0     j.job_id    as j_jobid,\par
+    j.job_title as j_title,\par
+    j.min_salary as j_minsalary,\par
+    j.max_salary as j_maxsalary,\par
+    job.employee_id as job_empid,\par
+    job.start_date as job_startdate,\par
+    job.end_date as job_enddate,\par
+    job.job_id   as job_jobid,\par
+    job.department_id as job_deptid\par
+FROM\par
+         hr.jobs j\par
+    JOIN hr.job_history job ON j.job_id = job.job_id\par
+\par
+\par
+\ul\b\fs28 left joins\par
+\ulnone\par
+\b0\fs22 select * from hr.jobs;\par
+ SELECT\par
+    emp.employee_id as e_empid,\par
+    emp.first_name as e_firstname,\par
+    emp.last_name as e_lastname,\par
+   emp. email as e_email,\par
+   emp. phone_number as e_phonenumber,\par
+    emp.hire_date as e_hiredate,\par
+   emp. job_id as e_jobid,\par
+    emp.salary as e_salary,\par
+   emp. commission_pct as e_commipct,\par
+   emp. manager_id as e_managerid,\par
+    emp.department_id as e_departmentid,\par
+    dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid\par
+FROM\par
+         hr.employees emp\par
+  left  JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+  left  JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+  left  JOIN hr.countries      coun ON coun.country_id = loc.country_id\par
+   left JOIN hr.regions        reg ON reg.region_id = coun.region_id\par
+   left JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+\par
+\b SELECT\b0\par
+    emp.employee_id as e_empid,\par
+    emp.first_name as e_firstname,\par
+    emp.last_name as e_lastname,\par
+   emp. email as e_email,\par
+   emp. phone_number as e_phonenumber,\par
+    emp.hire_date as e_hiredate,\par
+   emp. job_id as e_jobid,\par
+    emp.salary as e_salary,\par
+   emp. commission_pct as e_commipct,\par
+   emp. manager_id as e_managerid,\par
+    emp.department_id as e_departmentid,\par
+    dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid\par
+FROM\par
+         hr.employees emp\par
+\b left\b0  JOIN hr.departments dept ON emp.department_id = dept.department_id \par
+ \b SELECT\par
+\b0     emp.first_name,\par
+    emp.employee_id    AS empempid,\par
+    emp.job_id         AS empjobid,\par
+    j.job_id           AS jobjobid\par
+\par
+FROM\par
+         hr.employees emp\par
+     \b left JOIN \b0 hr.jobs j ON j.job_id = emp.job_id ;\par
+107 records(similor records from emp.107 and \par
+\par
+\b SELECT\par
+\b0     emp.first_name,\par
+    emp.employee_id       AS empempid,\par
+    emp.department_id     AS edeptid,\par
+    dept.department_id    AS d_departmentid\par
+FROM\par
+         hr.employees emp\par
+\b left JOIN \b0 hr.departments dept ON emp.department_id = dept.department_id;    107 records\par
+\par
+\b Select\par
+\b0     dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid,\par
+    loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province as l_stateprovince,\par
+    loc.city           as l_city,\par
+    loc.country_id      as l_countryid\par
+    from\par
+    hr.departments dept\par
+    \b left join \b0 hr.locations loc on dept.location_id = loc.location_id\par
+\par
+\b Select\par
+\b0     dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid,\par
+    loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province as l_stateprovince,\par
+    loc.city           as l_city,\par
+    loc.country_id      as l_countryid\par
+    from\par
+    hr.locations loc \par
+    \b left join \b0 hr.departments dept on dept.location_id = loc.location_id\par
+\par
+\b SELECT\par
+\b0     loc.country_id        AS l_conid,\par
+    loc.street_address    AS loc_street_add,\par
+    loc.postal_code       AS loc_postal,\par
+    loc.state_province    AS l_stateprovince,\par
+    loc.city              AS l_city,\par
+    loc.country_id        AS l_countryid,\par
+    con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid\par
+FROM\par
+    hr.countries con\par
+\b left join \b0 hr.locations loc ON loc.country_id = con.country_id;\par
+where loc.country_id is null ; ( 11 records null in locations table /unmatched in country table with location table)\par
+\par
+\b SELECT\par
+\b0     con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid,\par
+    reg.region_id       as r_regionid,\par
+    reg.region_name     as r_regionname\par
+FROM\par
+    hr.countries con\par
+\b  left join \b0 hr.regions reg ON con.region_id = reg.region_id\par
+\par
+\b SELECT\b0\par
+    con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid,\par
+    reg.region_id       as r_regionid,\par
+    reg.region_name     as r_regionname\par
+FROM\par
+    hr.regions reg\par
+  \b left join \b0 hr.countries con ON con.region_id = reg.region_id\par
+\par
+\b SELECT\par
+\b0     emp.employee_id as e_empid,\par
+    emp.first_name as e_firstname,\par
+    emp.last_name as e_lastname,\par
+   emp. email as e_email,\par
+   emp. phone_number as e_phonenumber,\par
+    emp.hire_date as e_hiredate,\par
+   emp. job_id as e_jobid,\par
+    emp.salary as e_salary,\par
+   emp. commission_pct as e_commipct,\par
+   emp. manager_id as e_managerid,\par
+    emp.department_id as e_departmentid,\par
+    job.employee_id as job_empid,\par
+    job.start_date as job_startdate,\par
+    job.end_date as job_enddate,\par
+    job.job_id   as job_jobid,\par
+    job.department_id as job_deptid\par
+FROM\par
+         hr.employees emp\par
+   \b left JOIN \b0 hr.job_history job ON emp.employee_id = job.employee_id;\par
+where job.employee_id is  null ; (100 records)\par
+\par
+\b SELECT\par
+\b0     j.job_id    as j_jobid,\par
+    j.job_title as j_title,\par
+    j.min_salary as j_minsalary,\par
+    j.max_salary as j_maxsalary,\par
+    job.employee_id as job_empid,\par
+    job.start_date as job_startdate,\par
+    job.end_date as job_enddate,\par
+    job.job_id   as job_jobid,\par
+    job.department_id as job_deptid\par
+FROM\par
+         hr.jobs j\par
+\b left JOIN \b0 hr.job_history job ON j.job_id = job.job_id;\par
+where job.job_id is null;(11 records from jobs table are unmatched)\par
+\par
+\ul\b\fs28 right joins\par
+\ulnone\fs22\par
+\par
+ SELECT\b0\par
+    emp.employee_id as e_empid,\par
+    emp.first_name as e_firstname,\par
+    emp.last_name as e_lastname,\par
+   emp. email as e_email,\par
+   emp. phone_number as e_phonenumber,\par
+    emp.hire_date as e_hiredate,\par
+   emp. job_id as e_jobid,\par
+    emp.salary as e_salary,\par
+   emp. commission_pct as e_commipct,\par
+   emp. manager_id as e_managerid,\par
+    emp.department_id as e_departmentid,\par
+    dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid\par
+FROM\par
+         hr.employees emp\par
+  right  JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+  right  JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+  right  JOIN hr.countries      coun ON coun.country_id = loc.country_id\par
+  right JOIN hr.regions        reg ON reg.region_id = coun.region_id\par
+  right  JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+\b SELECT\par
+\b0     emp.employee_id as e_empid,\par
+    emp.first_name as e_firstname,\par
+    emp.last_name as e_lastname,\par
+   emp. email as e_email,\par
+   emp. phone_number as e_phonenumber,\par
+    emp.hire_date as e_hiredate,\par
+   emp. job_id as e_jobid,\par
+    emp.salary as e_salary,\par
+   emp. commission_pct as e_commipct,\par
+   emp. manager_id as e_managerid,\par
+    emp.department_id as e_departmentid,\par
+    dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid\par
+FROM\par
+         hr.employees emp\par
+\b right JOIN \b0 hr.departments dept ON emp.department_id = dept.department_id  \par
+\par
+\b SELECT\par
+\b0     emp.first_name,\par
+    emp.employee_id    AS empempid,\par
+    emp.job_id         AS empjobid,\par
+    j.job_id           AS jobjobid\par
+\par
+FROM\par
+         hr.employees emp\par
+    \b right JOIN \b0 hr.jobs j ON j.job_id = emp.job_id ;\par
+\par
+107 records(similor records from emp.107 and \par
+\par
+\b SELECT\par
+\b0     emp.first_name,\par
+    emp.employee_id       AS empempid,\par
+    emp.department_id     AS edeptid,\par
+    dept.department_id    AS d_departmentid\par
+FROM\par
+         hr.employees emp\par
+\b right JOIN \b0 hr.departments dept ON emp.department_id = dept.department_id;\par
+\par
+total 122 records(from employees table 106 related/similor department_id,11 records from dept tablerelated/similor department_id and from right table = dept table all total 27(27-11=16+106=122)\par
+
+\pard\sa200\sl276\slmult1\f2\lang9\par
+\b SELECT\par
+\b0     con.country_id    AS c_conid,\par
+    con.country_name as cname,\par
+    con. region_id as cregionid,\par
+    loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province ,\par
+    loc.city,\par
+    loc.country_id\par
+FROM\par
+    hr.locations    loc\b\par
+    right JOIN \b0 hr.countries con ON con.country_id = loc.country_id\par
+\b Select\par
+\b0     dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid,\par
+    loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province as l_stateprovince,\par
+    loc.city           as l_city,\par
+    loc.country_id      as l_countryid\par
+    from\par
+    hr.departments dept\b\par
+    right join \b0 hr.locations loc on dept.location_id = loc.location_id\par
+\b Select\par
+\b0     dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid,\par
+    loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province as l_stateprovince,\par
+    loc.city           as l_city,\par
+    loc.country_id      as l_countryid\par
+    from\par
+    hr.locations loc \b\par
+    right join \b0 hr.departments dept on dept.location_id = loc.location_id\par
+\b SELECT\par
+\b0     loc.country_id        AS l_conid,\par
+    loc.street_address    AS loc_street_add,\par
+    loc.postal_code       AS loc_postal,\par
+    loc.state_province    AS l_stateprovince,\par
+    loc.city              AS l_city,\par
+    loc.country_id        AS l_countryid,\par
+    con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid\par
+FROM\par
+    hr.countries con\par
+\b right join \b0 hr.locations loc ON loc.country_id = con.country_id\par
+\par
+\b SELECT\par
+\b0     con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid,\par
+    reg.region_id       as r_regionid,\par
+    reg.region_name     as r_regionname\par
+FROM\par
+    hr.countries con\par
+\b right  join \b0 hr.regions reg ON con.region_id = reg.region_id\par
+\par
+\b SELECT\par
+\b0     con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid,\par
+    reg.region_id       as r_regionid,\par
+    reg.region_name     as r_regionname\par
+FROM\par
+    hr.regions reg\par
+\b  right join \b0 hr.countries con ON con.region_id = reg.region_id\par
+\par
+SELECT\par
+    emp.employee_id as e_empid,\par
+    emp.first_name as e_firstname,\par
+    emp.last_name as e_lastname,\par
+   emp. email as e_email,\par
+   emp. phone_number as e_phonenumber,\par
+    emp.hire_date as e_hiredate,\par
+   emp. job_id as e_jobid,\par
+    emp.salary as e_salary,\par
+   emp. commission_pct as e_commipct,\par
+   emp. manager_id as e_managerid,\par
+    emp.department_id as e_departmentid,\par
+    job.employee_id as job_empid,\par
+    job.start_date as job_startdate,\par
+    job.end_date as job_enddate,\par
+    job.job_id   as job_jobid,\par
+    job.department_id as job_deptid\par
+FROM\par
+         hr.employees emp\par
+   right JOIN hr.job_history job ON emp.employee_id = job.employee_id\par
+\par
+\b SELECT\par
+\b0     j.job_id    as j_jobid,\par
+    j.job_title as j_title,\par
+    j.min_salary as j_minsalary,\par
+    j.max_salary as j_maxsalary,\par
+    job.employee_id as job_empid,\par
+    job.start_date as job_startdate,\par
+    job.end_date as job_enddate,\par
+    job.job_id   as job_jobid,\par
+    job.department_id as job_deptid\par
+FROM\par
+         hr.jobs j\par
+   \b right JOIN \b0 hr.job_history job ON j.job_id = job.job_id\par
+\par
+\ul\fs28 Full outer join\par
+\ulnone\fs22\par
+SELECT\par
+    emp.first_name,\par
+    emp.employee_id       AS empempid,\par
+    emp.department_id     AS edeptid,\par
+    dept.department_id    AS d_departmentid\par
+FROM\par
+         hr.employees emp\par
+ full outer join  hr.departments dept ON emp.department_id = dept.department_id;\par
+}
+ 
