@@ -408,7 +408,8 @@ FROM\par
     dept.manager_id as d_managerid\par
 FROM\par
          hr.employees emp\par
-\b right JOIN \b0 hr.departments dept ON emp.department_id = dept.department_id  \par
+\b right JOIN \b0 hr.departments dept ON emp.department_id = dept.department_id ; \par
+where emp.department_id is null (16 records displays)\par
 \par
 \b SELECT\par
 \b0     emp.first_name,\par

@@ -383,7 +383,7 @@ select * from HR.Employees where to_char (hire_date, 'MM') = 6;\par
 select *\par
 from hr.employees\par
 where hire_date= '17-Jun-03';\par
-.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 SQL Notes\par
 SELECT\par
     r.po_no AS "PO NUMBER",\par
@@ -818,7 +818,7 @@ or\par
 to_char(hire_date,'mon-yyyy') = 'mar-2007';\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 \par
-\b\fs28 5.SQL Notes 03-10-2021 QUERIES\par
+\b\fs28 5.SQL Notes 03-10-2021 QUERIES (upper,lower, like,substr, etc)\par
 \b0\fs22 SELECT\par
     employee_id,\par
     first_name,\par
@@ -977,7 +977,7 @@ Union\par
 SELECT 'DEPARTMENTS' as TableName, count(*)  FROM hr.DEPARTMENTS;\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 \par
-\b\fs28 SQL Notes 03-10-2021 queries\par
+\b\fs28 6.SQL Notes 03-10-2021 queries (like,upper,lower,substr etc)\par
 \b0\fs22 SELECT\par
     employee_id,\par
     first_name,\par
@@ -1135,7 +1135,7 @@ SELECT 'employees' as TableName, count(*)   FROM hr.employees\par
 Union\par
 SELECT 'DEPARTMENTS' as TableName, count(*)  FROM hr.DEPARTMENTS;\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
-\b\fs28 6.SQL Notes 03-13-2021 queries\par
+\b\fs28 7..SQL Notes 03-13-2021 queries\par
 \b0\fs22 SELECT\par
     employee_id,\par
     first_name,\par
@@ -2550,5 +2550,479 @@ WHERE DEPARTMENT_ID IS NOT NULL\par
 GROUP BY DEPARTMENT_ID;\par
 \par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\ul\b\fs28 SQL Notes queries dated 03-31-2021\par
+\ulnone\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+ \par
+ SELECT\par
+    department_id,\par
+    department_name,\par
+    manager_id,\par
+    location_id\par
+FROM\par
+    hr.departments;  \par
+   \par
+SELECT\par
+    EMP.employee_id, EMP.first_name, EMP.last_name, EMP.email, EMP.phone_number, EMP.hire_date, EMP.job_id, EMP.salary, EMP.commission_pct, EMP.manager_id, EMP.department_id as EMP_department_id, DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id;\par
+\par
+SELECT\par
+    EMP.employee_id, EMP.first_name, EMP.last_name, EMP.email, EMP.phone_number, EMP.hire_date, EMP.job_id, EMP.salary, EMP.commission_pct, EMP.manager_id, EMP.department_id as EMP_department_id, DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+LEFT JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id;\par
+   \par
+SELECT\par
+    EMP.employee_id, EMP.first_name, EMP.last_name, EMP.email, EMP.phone_number, EMP.hire_date, EMP.job_id, EMP.salary, EMP.commission_pct, EMP.manager_id, EMP.department_id as EMP_department_id, DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+LEFT JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id;\par
+\par
+SELECT\par
+    EMP.employee_id, EMP.first_name, EMP.last_name, EMP.email, EMP.phone_number, EMP.hire_date, EMP.job_id, EMP.salary, EMP.commission_pct, EMP.manager_id, EMP.department_id as EMP_department_id, DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+LEFT JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id\par
+where DEPT.department_id is NULL;\par
+\par
+SELECT\par
+    EMP.employee_id, EMP.first_name, EMP.last_name, EMP.email, EMP.phone_number, EMP.hire_date, EMP.job_id, EMP.salary, EMP.commission_pct, EMP.manager_id, EMP.department_id as EMP_department_id, DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+LEFT JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id\par
+where EMP.department_id is NULL;\par
+\par
+SELECT\par
+    EMP.employee_id, EMP.first_name, EMP.last_name, EMP.email, EMP.phone_number, EMP.hire_date, EMP.job_id, EMP.salary, EMP.commission_pct, EMP.manager_id, EMP.department_id as EMP_department_id, DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+RIGHT JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id;\par
+\par
+SELECT\par
+    EMP.employee_id, EMP.first_name, EMP.last_name, EMP.email, EMP.phone_number, EMP.hire_date, EMP.job_id, EMP.salary, EMP.commission_pct, EMP.manager_id, EMP.department_id as EMP_department_id, DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+RIGHT JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id\par
+where EMP.department_id is NULL;\par
+\par
+SELECT\par
+DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+RIGHT JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id\par
+where EMP.department_id is NULL;\par
+\par
+SELECT\par
+EMP.*,DEPT.*\par
+FROM\par
+    hr.employees EMP\par
+full outer JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id;\par
+\par
+SELECT\par
+    EMP.employee_id, EMP.first_name, EMP.last_name, EMP.email, EMP.phone_number, EMP.hire_date, EMP.job_id, EMP.salary, EMP.commission_pct, EMP.manager_id, EMP.department_id as EMP_department_id, DEPT.department_id as DEPT_department_id, DEPT.department_name\par
+FROM\par
+    hr.employees EMP\par
+full outer JOIN hr.departments DEPT\par
+ON  EMP.department_id = DEPT.department_id\par
+where EMP.department_id is NULL\par
+or EMP.department_id is NULL;\par
+\par
+\par
+SELECT\par
+    EMP.employee_id,\par
+    EMP.first_name,\par
+    EMP.last_name,\par
+manager.employee_id,\par
+    manager.first_name,\par
+    manager.last_name\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.employees Manager\par
+ON EMP.Manager_ID = Manager.employee_id;\par
+\par
+\par
+SELECT\par
+    --EMP.first_name with EMP.employee_id report to Manager.first_name as "Reports to"\par
+    EMP.first_name || ' with ' || EMP.employee_id || ' emp id report to '|| Manager.first_name as "Reports to"\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.employees Manager\par
+ON EMP.Manager_ID = Manager.employee_id;\par
+\par
+select 'Radhe' || 'Shyam' from dual;\par
+select 'Radhe' || ' '|| 'Shyam' from dual;\par
+select 'Radhe' || '*'|| 'Shyam' from dual;\par
+\par
+\par
+select phone_number, substr(phone_number,1,3) FROM\par
+    hr.employees EMP;\par
+   \par
+   \par
+select  substr(phone_number,1,3), count(*) FROM\par
+hr.employees EMP\par
+group by  substr(phone_number,1,3);\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\ul\b\fs28 SQL Notes : queries 04-01-2021\par
+\ulnone\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+SELECT\par
+    EMP.employee_id,\par
+    EMP.first_name,\par
+    EMP.last_name,\par
+manager.employee_id,\par
+    manager.first_name,\par
+    manager.last_name\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.employees Manager\par
+ON EMP.Manager_ID = Manager.employee_id;\par
+\par
+\par
+SELECT\par
+    EMP.employee_id,\par
+    EMP.first_name,\par
+    EMP.last_name,\par
+    EMP.Salary,\par
+manager.employee_id,\par
+    manager.first_name,\par
+    manager.last_name,\par
+    manager.salary\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.employees Manager\par
+ON EMP.Manager_ID = Manager.employee_id\par
+where EMP.Salary> Manager.Salary;\par
+\par
+Select Emp.First_name, EMP.last_name, Dept.Department_name from HR.employees EMP\par
+join HR.departments Dept on Dept.department_id=EMP.department_id\par
+join HR.jobs JOB on JOB.job_id=EMP.job_id\par
+Where JOB.job_title in('Sales Representative','Purchasing Manager')\par
+\par
+\par
+SELECT\par
+    emp.first_name,\par
+    emp.last_name,\par
+    dept.department_name,\par
+    j.job_title\par
+   \par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+WHERE\par
+        j.job_title in ('Sales Representative', 'Purchasing Manager');\par
+\par
+\par
+SELECT loc.city,\par
+    dept.department_name,\par
+count(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+     group by  loc.city,\par
+    dept.department_name;\par
+   \par
+select * from\par
+(SELECT loc.city,\par
+    dept.department_name,\par
+count(employee_id) CNT_EMP_DEPTWISE\par
+FROM\par
+hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+     group by  loc.city,\par
+    dept.department_name\par
+)Inline1\par
+where CNT_EMP_DEPTWISE > 5;\par
+\par
+SELECT\par
+    loc.city,\par
+    COUNT(DISTINCT dept.department_name) cnt_dept,\par
+    COUNT(emp.employee_id) cnt_of_emp\par
+FROM\par
+    hr.locations loc\par
+    JOIN hr.departments dept ON loc.location_id = dept.location_id\par
+    JOIN hr.employees emp ON dept.department_id = emp.department_id\par
+GROUP BY\par
+    loc.city\par
+HAVING\par
+    COUNT(emp.employee_id) > 5;\par
+   \par
+SELECT\par
+    emp.manager_id,\par
+    COUNT(emp.employee_id) "NO OF EMPLOYEES"\par
+FROM\par
+    hr.employees emp\par
+ GROUP BY\par
+    emp.manager_id\par
+HAVING\par
+    COUNT(emp.employee_id) > 5;\par
+\par
+\par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined --, COUNT(EMP.EMPLOYEE_ID) NEW_EMP_JOINED,LOC.CITY\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON');\par
+   \par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined , COUNT(EMP.EMPLOYEE_ID) NEW_EMP_JOINED\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON')\par
+HAVING\par
+    COUNT(emp.employee_id) > 5;\par
+   \par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined , COUNT(EMP.EMPLOYEE_ID) NEW_EMP_JOINED\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    where city = 'Sydney'\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON')\par
+HAVING\par
+    COUNT(emp.employee_id) > 5;\par
+   \par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined , COUNT(EMP.EMPLOYEE_ID) NEW_EMP_JOINED\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    where city = 'Seattle'\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON')\par
+HAVING\par
+    COUNT(emp.employee_id) > 3;\par
+   \par
+   \par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    where city = 'Seattle'\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON')\par
+HAVING\par
+    COUNT(emp.employee_id) > 3;\par
+   \par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id and city = 'Seattle'\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON')\par
+HAVING\par
+    COUNT(emp.employee_id) > 3;\par
+   \par
+   \par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON')\par
+HAVING\par
+    COUNT(emp.employee_id) > 3 ;\par
+   \par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined , count(*)\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON')\par
+HAVING\par
+    COUNT(emp.employee_id) between 5 and 10 ;\par
+   \par
+   \par
+SELECT\par
+    TO_CHAR(emp.hire_date,'MON') month_joined , count(*)\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+GROUP BY\par
+    TO_CHAR(emp.hire_date,'MON')\par
+HAVING\par
+    count(*) between 5 and 10 ;\par
+\par
+SELECT first_name, last_name from hr.employees where last_name like'%b%';    \par
+\par
+SELECT\par
+   ctr.country_name,\par
+   max(salary),\par
+   round(avg(salary))\par
+FROM\par
+   hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    JOIN hr.countries      ctr ON ctr.country_id = loc.country_id\par
+    group by ctr.country_name;  \par
+\par
+SELECT\par
+    dept.department_name,\par
+    loc.city,\par
+    MAX(emp.salary),\par
+    MIN(emp.salary)\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON loc.location_id = dept.location_id\par
+    JOIN hr.countries ctr ON ctr.country_id = loc.country_id\par
+GROUP BY\par
+    dept.department_name,\par
+    loc.city;\par
+   \par
+SELECT\par
+    region.region_name,\par
+    round(AVG(emp.salary) ) AS avg_salary\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    JOIN hr.countries coun ON coun.country_id = loc.country_id\par
+    JOIN hr.regions region ON coun.region_id = region.region_id\par
+GROUP BY\par
+    region.region_name;\par
+\par
+SELECT\par
+    region.region_name,\par
+    round(AVG(emp.salary) ) AS avg_salary\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    JOIN hr.countries coun ON coun.country_id = loc.country_id\par
+    JOIN hr.regions region ON coun.region_id = region.region_id\par
+GROUP BY\par
+    region.region_name;\par
+\par
+SELECT\par
+    r.region_name,\par
+    round(AVG(e.salary) )\par
+FROM\par
+    hr.regions r\par
+    JOIN hr.countries c ON r.region_id = c.region_id\par
+    LEFT JOIN hr.locations l ON l.country_id = c.country_id\par
+    LEFT JOIN hr.departments d ON d.location_id = l.location_id\par
+    LEFT JOIN hr.employees e ON e.department_id = d.department_id\par
+GROUP BY\par
+    r.region_name;\par
+   \par
+   \par
+SELECT\par
+    region.region_name,\par
+    round(AVG(emp.salary) ) AS avg_salary\par
+FROM\par
+    hr.employees emp\par
+    Left JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    Left JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    Left JOIN hr.countries coun ON coun.country_id = loc.country_id\par
+    Right JOIN hr.regions region ON coun.region_id = region.region_id\par
+GROUP BY\par
+    region.region_name;\par
+\par
+SELECT\par
+    *\par
+FROM\par
+    hr.employees\par
+WHERE\par
+    to_char(hire_date, 'yyyy') = to_char(sysdate, 'yyyy');\par
+\par
+SELECT\par
+    *\par
+FROM\par
+    hr.employees\par
+WHERE\par
+    to_char(hire_date, 'yyyy') = to_char(sysdate, 'yyyy') - 15;\par
+   \par
+   \par
+SELECT\par
+    dept.department_name,\par
+    MAX(emp.salary),\par
+    MIN(emp.salary),\par
+    MAX(emp.salary) - MIN(emp.salary) difference\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+GROUP BY\par
+    dept.department_name;\par
+\par
+SELECT\par
+    MAX(salary) - MIN(salary),\par
+    dept.deptarment_name\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+GROUP BY\par
+    dept.deptarment_name\par
+   \par
+SELECT   SUBSTR(PHONE_NUMBER,1,3) as "Area Code", COUNT(EMPLOYEE_ID)\par
+FROM HR.EMPLOYEES\par
+GROUP BY     SUBSTR(PHONE_NUMBER,1,3)\par
+ORDER BY COUNT(EMPLOYEE_ID) ASC ;\par
+\par
+\par
+select * from hr.employees\par
+where\par
+hire_date between '1-Jun-03' and '30-Jun-07'\par
+and\par
+substr(phone_number,1,3)=515;\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.>>>>>>>>\par
 }
  

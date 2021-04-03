@@ -463,5 +463,189 @@ join hr.departments dept on emp.department_id = dept.department_id\par
 where salary>10000 and commission_pct is not null) inline1\par
 where d_departmentid in(70,80,90,110,180)\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\ul\b\fs28 SQL Assignment 12 (04-03-2021)\par
+\ulnone\b0\fs22 --1.Display Emp id, Emp First Name who does NOT work in department 'Sales' ? *\par
+SELECT\par
+    emp.employee_id,\par
+    dept.department_name,\par
+    emp.first_name\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+where department_name !='Sales'\par
+--where  department_name  not in ('Sales')\par
+--where department_name <>'Sales'\par
+\par
+--2.Display Employee details who department name \par
+--is 'Shipping' and MIN_SALARY range is 3000 to 5000 ? *\par
+SELECT\par
+   emp.first_name,\par
+    dept.department_name,\par
+    j.min_salary    \par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.jobs j\par
+on emp.job_id = j.job_id\par
+where department_name ='Shipping' and min_salary between 3000 and 5000;\par
+\par
+\par
+--3.Display Employee details who department name IS NOT 'IT' \par
+--AND Salary range between 5000 to 9000 and his city is NOT 'Seattle' ? *\par
+\par
+select emp.first_name,emp.salary,dept.department_name,loc.city\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.locations loc\par
+on dept.location_id = loc.location_id\par
+where   department_name != 'IT'  and city !='Seattle' and salary between '5000' and '9000'\par
+\par
+\par
+--4.Display employee and department name name in which he is not in either \par
+--'Sales Representative' or 'Purchasing Manager.? *\par
+select emp.first_name,dept.department_name,j.job_title\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.jobs j\par
+on emp.job_id = j.job_id\par
+where job_title not in ('Sales Representative', 'Purchasing Manager')\par
+\par
+--5.Display first name and experience of the employees? *\par
+select first_name,to_char(hire_date, 'yyyy') as "experience since"\par
+from hr.employees\par
+\par
+--6.Display Employees who joined after 2005 and joined in month of March? *\par
+select * from hr.employees\par
+where to_char(hire_date, 'yyyy')>'2005' and to_char(hire_date, 'mon')='mar'\par
+\par
+--7.Display Emp id, Emp First Name, Manager id and Manager First Name? *\par
+--Use Self join\par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+    manager.employee_id as "managerempid",   \par
+    manager.first_name  as "managerfirstname"  \par
+FROM\par
+         hr.employees emp\par
+JOIN hr.employees manager \par
+ON emp.manager_id = manager.employee_id\par
+    \par
+--8.Display Emp id, Emp First Name who has more salary than their Manager? *\par
+--Use Self join\par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+    emp.salary,\par
+    manager.first_name    AS "managerfirstname",\par
+    manager.salary        AS "managersalary"\par
+from hr.employees emp\par
+join hr.employees manager\par
+on emp.manager_id = manager.employee_id\par
+\par
+--9.Display Emp id, Emp First Name who has joined before their Manager? *\par
+select emp.employee_id,\par
+        emp.first_name,\par
+        emp.hire_date,\par
+manager.first_name    as "managerfirstname",\par
+manager.hire_date      as "managerhiredate"\par
+ from hr.employees emp\par
+ join hr.employees manager\par
+ on emp.manager_id = manager.employee_id\par
+ where emp.hire_date <manager.hire_date\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\ul\b\fs28 Assignment 12 (04-03-2021)\par
+\ulnone\b0\fs22 --1.Display Emp id, Emp First Name who does NOT work in department 'Sales' ? *\par
+SELECT\par
+    emp.employee_id,\par
+    dept.department_name,\par
+    emp.first_name\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+where department_name !='Sales'\par
+--where  department_name  not in ('Sales')\par
+--where department_name <>'Sales'\par
+\par
+--2.Display Employee details who department name \par
+--is 'Shipping' and MIN_SALARY range is 3000 to 5000 ? *\par
+SELECT\par
+   emp.first_name,\par
+    dept.department_name,\par
+    j.min_salary    \par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.jobs j\par
+on emp.job_id = j.job_id\par
+where department_name ='Shipping' and min_salary between 3000 and 5000;\par
+\par
+\par
+--3.Display Employee details who department name IS NOT 'IT' \par
+--AND Salary range between 5000 to 9000 and his city is NOT 'Seattle' ? *\par
+\par
+select emp.first_name,emp.salary,dept.department_name,loc.city\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.locations loc\par
+on dept.location_id = loc.location_id\par
+where   department_name != 'IT'  and city !='Seattle' and salary between '5000' and '9000'\par
+\par
+\par
+--4.Display employee and department name name in which he is not in either \par
+--'Sales Representative' or 'Purchasing Manager.? *\par
+select emp.first_name,dept.department_name,j.job_title\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.jobs j\par
+on emp.job_id = j.job_id\par
+where job_title not in ('Sales Representative', 'Purchasing Manager')\par
+\par
+--5.Display first name and experience of the employees? *\par
+select first_name,to_char(hire_date, 'yyyy') as "experience since"\par
+from hr.employees\par
+\par
+--6.Display Employees who joined after 2005 and joined in month of March? *\par
+select * from hr.employees\par
+where to_char(hire_date, 'yyyy')>'2005' and to_char(hire_date, 'mon')='mar'\par
+\par
+--7.Display Emp id, Emp First Name, Manager id and Manager First Name? *\par
+--Use Self join\par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+    manager.employee_id as "managerempid",   \par
+    manager.first_name  as "managerfirstname"  \par
+FROM\par
+         hr.employees emp\par
+JOIN hr.employees manager \par
+ON emp.manager_id = manager.employee_id\par
+    \par
+--8.Display Emp id, Emp First Name who has more salary than their Manager? *\par
+--Use Self join\par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+    emp.salary,\par
+    manager.first_name    AS "managerfirstname",\par
+    manager.salary        AS "managersalary"\par
+from hr.employees emp\par
+join hr.employees manager\par
+on emp.manager_id = manager.employee_id\par
+\par
+--9.Display Emp id, Emp First Name who has joined before their Manager? *\par
+select emp.employee_id,\par
+        emp.first_name,\par
+        emp.hire_date,\par
+manager.first_name    as "managerfirstname",\par
+manager.hire_date      as "managerhiredate"\par
+ from hr.employees emp\par
+ join hr.employees manager\par
+ on emp.manager_id = manager.employee_id\par
+ where emp.hire_date <manager.hire_date\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 }
  
