@@ -605,8 +605,12 @@ on emp.job_id = j.job_id\par
 where job_title not in ('Sales Representative', 'Purchasing Manager')\par
 \par
 --5.Display first name and experience of the employees? *\par
-select first_name,to_char(hire_date, 'yyyy') as "experience since"\par
-from hr.employees\par
+select first_name|| ' '|| last_name as Fullname,\par
+trunc(months_between(sysdate, hire_date)/12) as TotalYearsExperience\par
+from hr.employees;\par
+Select first_name||' '|| last_name as FullName,\par
+round(Months_between(sysdate, hire_date)/12) as TotalYearExperience\par
+from hr.employees;\par
 \par
 --6.Display Employees who joined after 2005 and joined in month of March? *\par
 select * from hr.employees\par
