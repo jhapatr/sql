@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff31507\deff0\stshfdbch31505\stshfloch31506\stshfhich31506\stshfbi31507\deflang1033\deflangfe1033\themelang1033\themelangfe0\themelangcs0{\fonttbl{\f0\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f2\fbidi \fmodern\fcharset0\fprq1{\*\panose 02070309020205020404}Courier New;}
 {\f34\fbidi \froman\fcharset0\fprq2{\*\panose 02040503050406030204}Cambria Math;}{\f37\fbidi \fswiss\fcharset0\fprq2{\*\panose 020f0502020204030204}Calibri;}{\flomajor\f31500\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}
 {\fdbmajor\f31501\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\fhimajor\f31502\fbidi \fswiss\fcharset0\fprq2{\*\panose 020f0302020204030204}Calibri Light;}
@@ -856,3 +857,569 @@ ffffffffffffffffffffffffffffffff52006f006f007400200045006e0074007200790000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff000000000000000000000000000000000000000000000000
 0000000000000000000000000000000000000000000000000105000000000000}}
+=======
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Calibri;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\nowidctlpar\sa200\sl276\slmult1\b\f0\fs32\lang9 SQL Assignment 7 \par
+\b0\fs22 1.Display Employees who joined before 2003 and after 2005 ? *\par
+SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN '2004';\par
+2.Display Employees who has job id = IT_PROG and work in department 50? *\par
+SELECT * FROM HR.EMPLOYEES  WHERE JOB_ID ='IT_PROG' AND DEPARTMENT_ID =50;\par
+3.Display Employees who has job id = IT_PROG and salary between 2500 and 7500? *\par
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID = 'IT_PROG' AND SALARY BETWEEN 2500 AND 7500;\par
+4.Display department ID, year, and Number of employees joined? *\par
+SELECT DEPARTMENT_ID,TO_CHAR(HIRE_DATE, 'YYYY'),COUNT(*) FROM HR.EMPLOYEES\par
+GROUP BY DEPARTMENT_ID, TO_CHAR(HIRE_DATE, 'YYYY') \par
+ORDER BY DEPARTMENT_ID,TO_CHAR(HIRE_DATE, 'YYYY');\par
+5.Display number of employees joined after 15th of the month? *\par
+SELECT * FROM EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'DD')  >='15';\par
+6.Perform union using Employees tables condition DEPARTMENT_ID in (70,80,90) and Salary > 10000 and COMMISSION_PCT is not empty? *\par
+SELECT * FROM HR.EMPLOYEES WHERE DEPARTMENT_ID IN(70,80,90) \par
+union\par
+SELECT * FROM HR.EMPLOYEES WHERE SALARY >10000 \par
+UNION\par
+SELECT * FROM HR.EMPLOYEES WHERE COMMISSION_PCT IS NOT NULL;\par
+7.Display employees details for those employees who has any vowel (a, e, i, o, or u) in last name? *\par
+SELECT * FROM HR.EMPLOYEES WHERE LAST_NAME LIKE '%a%' OR LAST_NAME LIKE '%e%' OR \par
+LAST_NAME LIKE '%i%' OR LAST_NAME LIKE '%o%' OR LAST_NAME LIKE '%u';\par
+8.Display employees who got same third character in first or last name? *\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    substr(first_name,3,1),\par
+    substr(last_name,3,1)\par
+FROM\par
+    hr.employees where substr(first_name,3,1) = substr(last_name,3,1);\par
+9.Display all Employees from Employees table except year 2007? *\par
+SELECT * FROM HR.EMPLOYEES WHERE TO_CHAR(HIRE_DATE, 'YYYY') NOT IN '2007';\par
+10.Display all Employees from Employees table who joined either Jan 2005 or Mar 2007 and not belongs to Department 70? *\par
+  SELECT * FROM HR.EMPLOYEES WHERE (TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'JAN-2005' OR     TO_CHAR(HIRE_DATE, 'MON-YYYY') = 'MAR-2007') AND DEPARTMENT_ID NOT IN (70);\par
+
+\pard\widctlpar\sa200\sl276\slmult1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+
+\pard\widctlpar\ul\b\f1\fs28\lang1033 Assignment 8\par
+\ulnone\b0\fs22 QUESTION #1\par
+--Display the DEPARTMENT_ID, DEPARTMENT Name \par
+--and highest salary in each department form Employee Table? \par
+\par
+SELECT E.DEPARTMENT_ID, D.DEPARTMENT_NAME, J.MAX_SALARY FROM EMPLOYEES E\par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN JOBS J ON E.JOB_ID = J.JOB_ID;\par
+\par
+\par
+-- QUESTION # 2\par
+SELECT * FROM HR.EMPLOYEES \par
+WHERE \par
+TO_CHAR(HIRE_DATE, 'MON-YYYY') >='JAN-2005' AND TO_CHAR(HIRE_DATE, 'MON-YYYY') <='FEB-2007'\par
+AND\par
+DEPARTMENT_ID NOT IN (50,60)\par
+AND\par
+SALARY > 4500;\par
+\par
+\par
+-- QUESTION#3 Display unique City and department Name? *\par
+SELECT DISTINCT  CITY AS "NAMES" FROM LOCATIONS\par
+UNION\par
+SELECT DISTINCT DEPARTMENT_NAME "NAMES" FROM DEPARTMENTS;\par
+\par
+SELECT DISTINCT  CITY AS "NAMES" FROM LOCATIONS;\par
+SELECT DISTINCT DEPARTMENT_NAME "NAMES" FROM DEPARTMENTS;\par
+\par
+--QUESTION #4 Country wise employees highest and avg salary? *\par
+\par
+SELECT C.COUNTRY_NAME, MAX(E.SALARY) AS MAX_SALARY_COUNTRYWISE, ROUND(AVG(E.SALARY)) AS AVG_SALARY_COUNTRYWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+GROUP BY C.COUNTRY_NAME;\par
+\par
+--QUESTION#5 Display City wise avg salary?\par
+SELECT l.city, ROUND(AVG(E.SALARY)) AS AVG_SALARY_COUNTRYWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+GROUP BY L.CITY;\par
+\par
+--QUESTION#6 Display the region wise average, min and max salary? *\par
+SELECT R.REGION_NAME, MIN(E.SALARY) AS MIN_SALARY_REGIONWISE, MAX(E.SALARY) AS MAX_SALARY_REGIONWISE FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+JOIN regions R ON C.REGION_ID = r.region_id\par
+GROUP BY R.REGION_NAME;\par
+\par
+\par
+--QUESTION#7 Display City wise number of employees in descending order? *\par
+SELECT l.city, COUNT(*) FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+GROUP BY L.CITY ORDER BY COUNT(*) DESC;\par
+\par
+\par
+--QUESTION#8 Display Region Name, City, Dept Name and hire year for all the employees *\par
+SELECT E.FIRST_NAME, E.LAST_NAME, r.region_name, l.city, d.department_name, TO_CHAR(E.HIRE_DATE,'YYYY') AS HIREYEAR\par
+FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID\par
+JOIN LOCATIONS L ON D.LOCATION_ID = L.LOCATION_ID\par
+JOIN COUNTRIES C ON L.COUNTRY_ID = C.COUNTRY_ID\par
+JOIN REGIONS R ON C.REGION_ID = r.region_id;\par
+\par
+\par
+--QUESTION#9 Display Job Title, Employee First Name and Department name of employees \par
+--who joined between 2003 and 2007? *\par
+--Use jobs table for Job Title\par
+SELECT J.JOB_TITLE, E.FIRST_NAME, d.department_name, TO_CHAR(E.HIRE_DATE,'YYYY') AS HIREYEAR\par
+FROM EMPLOYEES E \par
+JOIN DEPARTMENTS D ON E.DEPARTMENT_ID = D.DEPARTMENT_ID                     \par
+JOIN JOBS J ON E.JOB_ID = J.JOB_ID\par
+
+\pard\widctlpar\sa200\sl276\slmult1 WHERE TO_CHAR(E.HIRE_DATE,'YYYY') >= 2003 AND TO_CHAR(E.HIRE_DATE,'YYYY') <= 2005;\f0\lang9\par
+\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+
+\pard\widctlpar\ul\b\f1\fs28\lang1033 Assignment 9   (\ulnone\f0\lang9 03-18-2021)\par
+\par
+\b0\fs22 --1.explain difference to_char and to_date? with example *\par
+
+\pard\widctlpar\sa200\sl276\slmult1 'TO_CHAR' use only for sting and it doesn't accept  range but 'TO_DATE' accept range\par
+exam:\par
+SELECT\par
+'01/01/2021' AS STING,\par
+'01/01/2021' +1 AS STING_NEXT_DAY,\par
+SYSDATE AS CURRENT_DATE,\par
+SYSDATE+1 AS CURRENT_DATE_ADDED\par
+FROM DUAL; \par
+--2.Display Emp id, Emp First Name who work in department 'Sales' and belongs to \par
+--country 'United States of America' ? *\par
+SELECT\par
+   EMP.employee_id,EMP.first_name\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+where department_name='Sales' and country_name='United States of America';\par
+\par
+--3.Display Employees who get 10000 or work in department 30 and COMMISSION_PCT is NULL? *\par
+select * from employees\par
+where (salary=10000 or department_id=30) and commission_PCT is null;\par
+\par
+--4.Display Employee details who department name is 'Shipping' and MIN_SALARY range is 3000 to 5000 \par
+--and for region 'Americas'? *\par
+SELECT * FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+JOIN hr.regions RGN\par
+ON RGN.region_id = CTR.region_id\par
+WHERE department_name='Shipping' and salary between 3000 and 5000 \par
+and region_name='Americas';\par
+\par
+--5.Display Day name and number of employees joined? *\par
+select to_char(hire_date,'Day') as DayName, count(*) as Totals \par
+from employees group by to_char(hire_date,'Day') order by count(*) desc;\par
+\par
+--6.Display Employee details who department name IS 'IT' \par
+--AND MIN_SALARY range IS 5000 to 9000 and his city is 'Seattle' or 'Southlake'? *\par
+SELECT\par
+  *\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+where DEPT.department_name='IT' and EMP.salary between 5000 and 9000 \par
+and (city='Seattle' or city='Southlake');  \par
+\par
+--7.Display the average salary from employee table where commission values is not NULL? *\par
+SELECT AVG(SALARY) FROM EMPLOYEES\par
+WHERE commission_PCT is not null;\par
+\par
+--8.Display unique department and unique job id count from employee table \par
+--where department values is not NULL? *\par
+SELECT  department_id,job_id from employees\par
+where department_id is not null\par
+GROUP BY department_id,job_id;\par
+\par
+select distinct department_id,job_id from employees where department_id is not null;\par
+
+\pard\sa200\sl276\slmult1\f2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs28 Assignment 10 ( 03-23-2021)\fs22\par
+--1.Display employee and department name name in which he is either \par
+--'Sales Representative' or 'Purchasing Manager.? *\par
+\par
+SELECT\par
+    emp.first_name,\par
+    emp.last_name,\par
+    dept.department_name,\par
+     j.job_title\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+WHERE\par
+        j.job_title like '%Sales Representative%' or j.job_title like '%Purchasing Manager%';\par
+        j.job_title in ('Sales Representative', 'Purchasing Manager')\par
+        j.job_title = 'Sales Representative' or j.job_title = 'Purchasing Manager';\par
+ --2.Display city, and number of departments where department has more than 5 employees? *\par
+select * from\par
+(\par
+select    \par
+    loc.city,\par
+    count(dept.department_id) as number_departments\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+group by loc.city \par
+) inline1\par
+WHERE \par
+        number_departments >5\par
+        \par
+ --3.Display details of manager who manages more than 5 employees? *\par
+ select manager_id as "manager",count(*) \par
+ from employees\par
+ group by manager_id \par
+ having (count(*))>5;\par
+ \par
+--4.Display the month in which more than 5 employees joined in any department located in Sydney? *\par
+select to_char(emp.hire_date, 'mon'),emp.department_id,count(*) \par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    where city = 'Sydney'\par
+    group by to_char(emp.hire_date, 'mon'),emp.department_id\par
+    having   (count(*)) >5;\par
+\par
+\par
+select * from\par
+(\par
+select to_char(emp.hire_date, 'mon'),emp.department_id,count(*) as employee_join\par
+FROM\par
+         hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    where city ='Sydney'\par
+group by to_char(emp.hire_date, 'mon'),emp.department_id\par
+)inline1\par
+where  employee_join >5;\par
+\par
+--5.Display the first name for employees where last name contain character \lquote  b \rquote  ? *\par
+select first_name,last_name\par
+from employees\par
+where last_name like '%b%';\par
+--6.which country wise employees highest and avg salary? *\par
+SELECT\par
+   ctr.country_name,\par
+    MAX(salary),\par
+    round(AVG(salary))\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+    JOIN hr.countries ctr ON loc.country_id = ctr.country_id\par
+GROUP BY\par
+    ctr.country_name;\par
+\par
+--7.Display Department and City wise highest and lowest salary? *\par
+SELECT\par
+   emp.department_id,\par
+   loc.city ,\par
+    MAX(salary),\par
+    min(salary)\par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON dept.location_id = loc.location_id\par
+GROUP BY\par
+    emp.department_id,loc.city;\par
+--8.Display the region wise average salary? *\par
+select \par
+    reg.region_name ,\par
+    round(avg(emp.salary))\par
+From hr.employees emp\par
+join hr.departments dept on emp.department_id = dept.department_id\par
+join hr.locations   loc  on dept.location_id = loc.location_id\par
+join hr.countries   con  on loc.country_id  = con.country_id\par
+join hr.regions     reg  on con.region_id =  reg.region_id\par
+Group by reg.region_name \par
+\par
+--9.Display employees who joined in the current year? *\par
+SELECT * FROM EMPLOYEES WHERE TO_CHAR(HIRE_DATE,'YYYY')=TO_CHAR(SYSDATE, 'YYYY')\par
+--10.Display differences between the highest salary and lowest salary in the department?\par
+SELECT \par
+department_id,\par
+count(*),\par
+max(salary),\par
+min(salary),\par
+max(salary)-min(salary) as "difference"\par
+FROM hr.employees\par
+group by department_id;\par
+--11.Display Employee count based on phone area code(First 3 digit of phone number) \par
+--ascending order by count of employee? *\par
+SELECT\par
+    substr(phone_number, 1, 3),\par
+    COUNT(*)\par
+FROM\par
+    hr.employees\par
+GROUP BY\par
+    substr(phone_number, 1, 3)\par
+--12.Select all Employees from Employees who joined company between 'JUN-03 and 'JUN-07' \par
+--and phone area code start with 515? *\par
+select * from employees \par
+where to_char(hire_date, 'mm-yy') >='06-03' and to_char(hire_date, 'mm-yy')<='06-07'\par
+and substr(phone_number,1,3) ='515';\par
+--13.Display job_id wise number of employees in descending order? *\par
+select job_id,count(*)\par
+from employees\par
+group by job_id\par
+order by 2 desc;\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\fs28 Assignment 11  (03-25-2021)\par
+\b0\fs22 Display Employee details who department name IS 'IT' OR MIN_SALARY range IS 5000 to 9000 and his city is 'Seattle' or 'Southlake' or employee salary in more than 3600? *\par
+Hint : MIN_SALARY present in Jobs table\par
+select \par
+emp.first_name,\par
+j.min_salary as jminsalary,\par
+dept.department_name as d_deptname,\par
+loc.city as loccity\par
+from \par
+hr.employees emp\par
+ JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+where (department_name = 'IT' or min_salary between 5000 and 9000) and (city in\par
+('Seattle', 'Southlake') or salary >3600);\par
+Display employee and department name name, City, Region Name in which he is either 'Sales Representative' or 'Purchasing Manager and commission percentage IS NOT NULL? *\par
+select \par
+emp.first_name,\par
+dept.department_name as d_departmentname,\par
+loc.city as l_city,\par
+reg.region_name as r_regionname,\par
+j.job_title as j_jobtitle\par
+from \par
+hr.employees emp\par
+    JOIN hr.departments    dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations      loc ON loc.location_id = dept.location_id\par
+    JOIN hr.countries      coun ON coun.country_id = loc.country_id\par
+    JOIN hr.regions        reg ON reg.region_id = coun.region_id\par
+    JOIN hr.jobs           j ON j.job_id = emp.job_id\par
+    where job_title in ('Sales Representative','Purchasing Manager') \par
+    and commission_pct is not null;\par
+Explain inner join, Left join, Right join and Full outer join? *\par
+To join all the matching records between the two tables is called inner join. \par
+To join all the records from the left table including left exclusive records and all the matching records from the right table is called left join.\par
+To join all the records from the right table including right exclusive records and all the matching records from the left table is called right join.\par
+To join all the records (matching and unmatched ) from both tables is called full outer join.\par
+Write two query to show Left join? *\par
+Use any two table form HR schema\par
+Select\par
+    dept.department_id as d_departmentid,\par
+    dept.department_name as d_deptname ,\par
+    dept.location_id as d_locationid,\par
+    dept.manager_id as d_managerid,\par
+    loc.country_id    AS l_conid,\par
+    loc.street_address as loc_street_add,\par
+    loc.postal_code as loc_postal,\par
+    loc.state_province as l_stateprovince,\par
+    loc.city           as l_city,\par
+    loc.country_id      as l_countryid\par
+    from\par
+    hr.locations loc \par
+    left join hr.departments dept on dept.location_id = loc.location_id\par
+\par
+SELECT\par
+    loc.country_id        AS l_conid,\par
+    loc.street_address    AS loc_street_add,\par
+    loc.postal_code       AS loc_postal,\par
+    loc.state_province    AS l_stateprovince,\par
+    loc.city              AS l_city,\par
+    loc.country_id        AS l_countryid,\par
+    con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid\par
+FROM\par
+    hr.countries con\par
+left join hr.locations loc ON loc.country_id = con.country_id\par
+\par
+Write two query to show Right join? *\par
+Use any two table form HR schema\par
+SELECT\par
+    emp.first_name,\par
+    emp.employee_id    AS empempid,\par
+    emp.job_id         AS empjobid,\par
+    j.job_id           AS jobjobid\par
+\par
+FROM\par
+         hr.employees emp\par
+    right JOIN hr.jobs j ON j.job_id = emp.job_id ;\par
+\par
+\par
+SELECT\par
+    emp.first_name,\par
+    emp.employee_id       AS empempid,\par
+    emp.department_id     AS edeptid,\par
+    dept.department_id    AS d_departmentid\par
+FROM\par
+         hr.employees emp\par
+right JOIN hr.departments dept ON emp.department_id = dept.department_id;\par
+\par
+Write two query to show full outer join? *\par
+Use any two table form HR schema\par
+SELECT\par
+    emp.first_name,\par
+    emp.employee_id       AS empempid,\par
+    emp.department_id     AS edeptid,\par
+    dept.department_id    AS d_departmentid\par
+FROM\par
+         hr.employees emp\par
+ full outer join  hr.departments dept ON emp.department_id = dept.department_id;\par
+ \par
+ SELECT\par
+    con.country_id        AS c_conid,\par
+    con.country_name      AS cname,\par
+    con.region_id        AS cregionid,\par
+    reg.region_id       as r_regionid,\par
+    reg.region_name     as r_regionname\par
+FROM\par
+    hr.regions reg\par
+  full outer join hr.countries con ON con.region_id = reg.region_id\par
+Display Employees who works in DEPARTMENT_ID in (70,80,90, 110, 180) and Salary > 10000 and COMMISSION_PCT is not empty? *\par
+select * from \par
+(\par
+select \par
+emp.first_name as e_firstname,\par
+emp.last_name as e_lastname,\par
+emp.salary as e_salary,\par
+emp.commission_pct as e_commissionpct,\par
+dept.department_id as d_departmentid\par
+from \par
+hr.employees emp\par
+join hr.departments dept on emp.department_id = dept.department_id\par
+where salary>10000 and commission_pct is not null) inline1\par
+where d_departmentid in(70,80,90,110,180)\par
+Display Employees who works in DEPARTMENT_ID in (70,80,90, 110, 180) and Salary > 10000 and COMMISSION_PCT is not empty? *\par
+select * from \par
+(\par
+select \par
+emp.first_name as e_firstname,\par
+emp.last_name as e_lastname,\par
+emp.salary as e_salary,\par
+emp.commission_pct as e_commissionpct,\par
+dept.department_id as d_departmentid\par
+from \par
+hr.employees emp\par
+join hr.departments dept on emp.department_id = dept.department_id\par
+where salary>10000 and commission_pct is not null) inline1\par
+where d_departmentid in(70,80,90,110,180)\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\ul\b\fs28 Assignment 12 (04-03-2021)\par
+\ulnone\b0\fs22 --1.Display Emp id, Emp First Name who does NOT work in department 'Sales' ? *\par
+SELECT\par
+    emp.employee_id,\par
+    dept.department_name,\par
+    emp.first_name\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+where department_name !='Sales'\par
+--where  department_name  not in ('Sales')\par
+--where department_name <>'Sales'\par
+\par
+--2.Display Employee details who department name \par
+--is 'Shipping' and MIN_SALARY range is 3000 to 5000 ? *\par
+SELECT\par
+   emp.first_name,\par
+    dept.department_name,\par
+    j.min_salary    \par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.jobs j\par
+on emp.job_id = j.job_id\par
+where department_name ='Shipping' and min_salary between 3000 and 5000;\par
+\par
+\par
+--3.Display Employee details who department name IS NOT 'IT' \par
+--AND Salary range between 5000 to 9000 and his city is NOT 'Seattle' ? *\par
+\par
+select emp.first_name,emp.salary,dept.department_name,loc.city\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.locations loc\par
+on dept.location_id = loc.location_id\par
+where   department_name != 'IT'  and city !='Seattle' and salary between '5000' and '9000'\par
+\par
+\par
+--4.Display employee and department name name in which he is not in either \par
+--'Sales Representative' or 'Purchasing Manager.? *\par
+select emp.first_name,dept.department_name,j.job_title\par
+from hr.employees emp\par
+join hr.departments dept\par
+on emp.department_id = dept.department_id\par
+join hr.jobs j\par
+on emp.job_id = j.job_id\par
+where job_title not in ('Sales Representative', 'Purchasing Manager')\par
+\par
+--5.Display first name and experience of the employees? *\par
+select first_name|| ' '|| last_name as Fullname,\par
+trunc(months_between(sysdate, hire_date)/12) as TotalYearsExperience\par
+from hr.employees;\par
+Select first_name||' '|| last_name as FullName,\par
+round(Months_between(sysdate, hire_date)/12) as TotalYearExperience\par
+from hr.employees;\par
+\par
+--6.Display Employees who joined after 2005 and joined in month of March? *\par
+select * from hr.employees\par
+where to_char(hire_date, 'yyyy')>'2005' and to_char(hire_date, 'mon')='mar'\par
+\par
+--7.Display Emp id, Emp First Name, Manager id and Manager First Name? *\par
+--Use Self join\par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+    manager.employee_id as "managerempid",   \par
+    manager.first_name  as "managerfirstname"  \par
+FROM\par
+         hr.employees emp\par
+JOIN hr.employees manager \par
+ON emp.manager_id = manager.employee_id\par
+    \par
+--8.Display Emp id, Emp First Name who has more salary than their Manager? *\par
+--Use Self join\par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+    emp.salary,\par
+    manager.first_name as managerfirstname,\par
+    manager.salary as managersalary\par
+from hr.employees emp\par
+join hr.employees manager\par
+on emp.manager_id = manager.employee_id\par
+where emp.salary > manager.salary \par
+--9.Display Emp id, Emp First Name who has joined before their Manager? *\par
+select emp.employee_id,\par
+        emp.first_name,\par
+        emp.hire_date,\par
+manager.first_name    as "managerfirstname",\par
+manager.hire_date      as "managerhiredate"\par
+ from hr.employees emp\par
+ join hr.employees manager\par
+ on emp.manager_id = manager.employee_id\par
+ where emp.hire_date <manager.hire_date\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+}
+ 
+>>>>>>> 4ca8e5ec54738d8f83de1586aed49a7d5c6a3224
