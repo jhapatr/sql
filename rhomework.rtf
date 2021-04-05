@@ -769,12 +769,12 @@ SELECT\par
     emp.employee_id,\par
     emp.first_name,\par
     emp.salary,\par
-    manager.first_name    AS "managerfirstname",\par
-    manager.salary        AS "managersalary"\par
+    manager.first_name as managerfirstname,\par
+    manager.salary as managersalary\par
 from hr.employees emp\par
 join hr.employees manager\par
 on emp.manager_id = manager.employee_id\par
-\par
+where emp.salary > manager.salary \par
 --9.Display Emp id, Emp First Name who has joined before their Manager? *\par
 select emp.employee_id,\par
         emp.first_name,\par
