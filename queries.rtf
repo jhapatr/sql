@@ -3022,7 +3022,372 @@ hire_date between '1-Jun-03' and '30-Jun-07'\par
 and\par
 substr(phone_number,1,3)=515;\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
+\b\fs28 SQL Notes (04-05-2021)\par
+\b0\fs22 SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees;\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+commission_pct,\par
+department_id\par
+FROM\par
+    hr.employees where department_id = 30;\par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    'Ram' as Middle_Name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+commission_pct,\par
+department_id\par
+FROM\par
+    hr.employees where department_id in (10,20);\par
+   \par
+   \par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number as Home_Phone,\par
+    '334 343 4344' Mobile_Phone,\par
+    hire_date,\par
+department_id\par
+FROM\par
+    hr.employees where department_id in (40,70);\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date,\par
+commission_pct,department_id\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION\par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number, hire_date,\par
+    commission_pct,department_id\par
+FROM\par
+    hr.employees where department_id in (10,20);\par
 \par
+\par
+SELECT\par
+    employee_id, first_name, NULL as Middle_Name, last_name, email, phone_number, hire_date,\par
+commission_pct,department_id\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION\par
+SELECT\par
+    employee_id, first_name, 'Ram' as Middle_Name, last_name, email, phone_number, hire_date, commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20);\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, last_name, email, phone_number as Home_Phone, '334 343 4344' Mobile_Phone, hire_date, department_id\par
+FROM\par
+    hr.employees where department_id in (40,70);\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, NULL as Middle_Name, last_name, email, phone_number,NULL as Mobile_Phone, hire_date,\par
+commission_pct,department_id\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION\par
+SELECT\par
+    employee_id, first_name, 'Ram' as Middle_Name, last_name, email, phone_number, NULL as  Mobile_Phone, hire_date,\par
+    commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20)    \par
+UNION    \par
+SELECT\par
+    employee_id, first_name, 'Krishna' as Middle_Name, last_name, email, phone_number as Home_Phone,\par
+    '334 343 4344' Mobile_Phone, hire_date, NULL as commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (40,70);\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, NULL as Middle_Name, last_name, email, phone_number,NULL as Mobile_Phone, hire_date,\par
+commission_pct,department_id\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION\par
+SELECT\par
+    employee_id, first_name, 'Ram' as Middle_Name, last_name, email, phone_number, NULL as  Mobile_Phone, hire_date,\par
+    commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20)    \par
+UNION    \par
+SELECT\par
+    employee_id, first_name first_nm, 'Krishna' as Middle_Name, last_name, email, phone_number as Home_Phone,\par
+    '334 343 4344' Mobile_Phone, hire_date, NULL as commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (40,70);\par
+   \par
+SELECT\par
+    employee_id, first_name, NULL as Middle_Name, last_name, email, phone_number,NULL as Mobile_Phone, hire_date,\par
+commission_pct,department_id\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION ALL\par
+SELECT\par
+    employee_id, first_name, 'Ram' as Middle_Name, last_name, email, phone_number, NULL as  Mobile_Phone, hire_date,\par
+    commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20)\par
+UNION ALL\par
+SELECT\par
+    employee_id, first_name first_nm, 'Krishna' as Middle_Name, last_name, email, phone_number as Home_Phone,\par
+    '334 343 4344' Mobile_Phone, hire_date, NULL as commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (40,70);\par
+   \par
+   \par
+SELECT\par
+    employee_id, first_name, NULL as Middle_Name, last_name, email, phone_number,NULL as Mobile_Phone, hire_date,\par
+commission_pct,department_id\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION ALL\par
+SELECT\par
+    employee_id, first_name, 'Ram' as Middle_Name, last_name, email, phone_number, NULL as  Mobile_Phone, hire_date,\par
+    commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20,30)\par
+UNION ALL\par
+SELECT\par
+    employee_id, first_name first_nm, 'Krishna' as Middle_Name, last_name, email, phone_number as Home_Phone,\par
+    '334 343 4344' Mobile_Phone, hire_date, NULL as commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (30,40,70);\par
+\par
+SELECT\par
+    employee_id, first_name, NULL as Middle_Name, last_name, email, phone_number,NULL as Mobile_Phone, hire_date,\par
+commission_pct,department_id\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION\par
+SELECT\par
+    employee_id, first_name, 'Ram' as Middle_Name, last_name, email, phone_number, NULL as  Mobile_Phone, hire_date,\par
+    commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20,30)\par
+UNION\par
+SELECT\par
+    employee_id, first_name first_nm, 'Krishna' as Middle_Name, last_name, email, phone_number as Home_Phone,\par
+    '334 343 4344' Mobile_Phone, hire_date, NULL as commission_pct, department_id\par
+FROM\par
+    hr.employees where department_id in (30,40,70);\par
+   \par
+   \par
+    SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id in (10,20,30)\par
+UNION\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id in (30,40,70);\par
+   \par
+   \par
+    SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id = 30\par
+UNION ALL\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id in (10,20,30)\par
+UNION ALL\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id in (30,40,70);\par
+   \par
+   \par
+    SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id = 30\par
+INTERSECT\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id in (10,20,30)\par
+INTERSECT\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id in (30,40,70);\par
+   \par
+   \par
+  SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id in (10,20,30)\par
+MINUS\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary\par
+FROM\par
+    hr.employees where department_id in (30,40,70);\par
+   \par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20,30)\par
+MINUS\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id\par
+FROM\par
+    hr.employees where department_id in (30,40,70);\par
+   \par
+    SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id\par
+FROM\par
+    hr.employees where department_id in (30,40,70)\par
+MINUS\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20,30);\par
+   \par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id\par
+FROM\par
+    hr.employees where department_id in (30,40,70)\par
+MINUS\par
+SELECT\par
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id\par
+FROM\par
+    hr.employees where department_id in (10,20,90);\par
+   \par
+   \par
+SELECT\par
+    EMP.*\par
+FROM\par
+hr.employees emp\par
+    JOIN hr.departments dept ON emp.department_id = dept.department_id\par
+    JOIN hr.locations loc ON loc.location_id = dept.location_id\par
+    JOIN hr.countries coun ON coun.country_id = loc.country_id\par
+    JOIN hr.regions reg ON reg.region_id = coun.region_id\par
+    JOIN hr.jobs JOB ON JOB.job_id = emp.job_id\par
+WHERE\par
+        (dept.department_name = 'IT' OR JOB.min_salary BETWEEN 5000 AND 9000)\par
+    AND (loc.city IN ( 'Seattle', 'Southlake' ) OR SALARY >3600);\par
+   \par
+   \par
+    SELECT\par
+ EMP.first_name,     EMP.last_name, emp.commission_pct,\par
+    JOBS.job_title,    DEPT.department_name  , loc.city, rgn.region_name\par
+FROM\par
+    hr.employees EMP\par
+JOIN hr.departments DEPT\par
+ON EMP.department_id = DEPT.department_id\par
+JOIN hr.locations LOC\par
+ON LOC.location_id = DEPT.location_id\par
+JOIN hr.countries CTR\par
+ON CTR.country_id = LOC.country_id\par
+JOIN hr.regions RGN\par
+ON RGN.region_id = CTR.region_id\par
+JOIN hr.jobs JOBS\par
+ON  JOBS.job_id = EMP.job_id\par
+where  (job_title='Sales Representative' or job_title ='Purchasing Manager') and commission_pct is not null;\par
+\par
+\par
+SELECT EMP.FIRST_NAME, EMP.EMPLOYEE_ID\par
+FROM HR.EMPLOYEES EMP\par
+RIGHT JOIN HR.DEPARTMENTS DEPT\par
+ON EMP.DEPARTMENT_ID = DEPT.DEPARTMENT_ID\par
+WHERE EMP.EMPLOYEE_ID IS NULL AND DEPT.DEPARTMENT_NAME= 'Sales';\par
+\par
+\par
+SELECT\par
+    employee_id,\par
+    first_name,\par
+    last_name,\par
+    email,\par
+    phone_number,\par
+    hire_date,\par
+    job_id,\par
+    salary,\par
+    commission_pct,\par
+    manager_id,\par
+    department_id\par
+FROM\par
+    hr.employees\par
+WHERE department_id IN (70,80,90, 110, 180) AND\par
+      salary  > 10000 AND\par
+      commission_pct is not null;\par
+\par
+\par
+select\par
+first_name,\par
+to_char(sysdate,'YYYY') - to_char(hire_date,'YYYY') As Total_Number_of_Year\par
+from hr.employees;\par
+\par
+select first_name|| ' '|| last_name as Fullname,\par
+trunc(months_between(sysdate, hire_date)/12) as TotalYearsExperience\par
+from hr.employees;\par
+\par
+SELECT\par
+    emp.employee_id,\par
+    emp.first_name,\par
+     TO_CHAR(SYSDATE,'YYYY') - TO_CHAR(emp.hire_date,'YYYY'),\par
+     TO_CHAR(SYSDATE,'YYYY') - TO_CHAR(manager.hire_date,'YYYY')\par
+     \par
+FROM\par
+    hr.employees emp\par
+    JOIN hr.employees manager ON emp.manager_id = manager.employee_id\par
+WHERE\par
+    TO_CHAR(SYSDATE,'YYYY') - TO_CHAR(emp.hire_date,'YYYY') > TO_CHAR(SYSDATE,'YYYY') - TO_CHAR(manager.hire_date,'YYYY');\par
+   \par
+   \par
+select emp.employee_id,emp.first_name\par
+from hr.employees emp\par
+join hr.employees mgr\par
+on emp.manager_id = mgr.employee_id\par
+where emp.hire_date < mgr.hire_date;\par
+\par
+SELECT\par
+    first_name,\par
+    last_name,\par
+    hire_date\par
+FROM\par
+    hr.employees\par
+WHERE\par
+   To_Char(hire_date,'YYYY')> 2005\par
+   And To_Char(Hire_date,'MON')= 'MAR';\par
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.>>>>>>>>\par
+\par
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\par
 }
  

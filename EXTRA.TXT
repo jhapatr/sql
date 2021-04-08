@@ -317,6 +317,253 @@ manager.hire_date      as "managerhiredate"
  where emp.hire_date <manager.hire_date
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+qUERIES RUN (DATED 04-07-2021 11:45PM)
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    commission_pct,
+    department_id
+FROM
+    hr.employees
+WHERE
+    department_id = 30
+union
+
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    commission_pct,
+    department_id
+FROM
+    hr.employees
+WHERE
+    department_id IN ( 10, 20 )
+    
+
+SELECT
+    employee_id,
+    first_name,
+    NULL AS middle_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    commission_pct,
+    department_id
+FROM
+    hr.employees
+WHERE
+    department_id = 30
+union
+SELECT
+    employee_id,
+    first_name,
+    'Ram' AS middle_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    commission_pct,
+    department_id
+FROM
+    hr.employees
+WHERE
+    department_id IN ( 10, 20 )
+    
+
+   
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number AS homephone,
+    '3343434344' mobile_phone,
+    hire_date,
+    commission_pct,
+    manager_id,
+    department_id
+FROM
+    hr.employees
+WHERE
+    department_id IN ( 40, 70 )
+    
+   
+
+SELECT
+    employee_id,
+    first_name,
+    NULL  AS middle_name,
+    last_name,
+    email,
+    phone_number,
+    NULL  AS mobile_number,
+    hire_date,
+    commission_pct,
+    department_id
+FROM
+    hr.employees
+WHERE
+    department_id = 30
+
+UNION
+
+SELECT
+    employee_id,
+    first_name,
+    'Ram'  AS middle_name,
+    last_name,
+    email,
+    phone_number,
+    NULL   AS mobile_phone,
+    hire_date,
+    commission_pct,
+    department_id
+FROM
+    hr.employees
+WHERE
+    department_id IN ( 10, 20,30)  
+
+UNION  
+SELECT
+    employee_id,
+    first_name,
+    'krishna'     AS middle_name,
+    last_name,
+    email,
+    phone_number  AS homephone,
+    '3343434344'  mobile_phone,
+    hire_date,
+    NULL          AS commission_pct,
+    department_id
+from hr.employees 
+where department_id in (30,40,70)
+
+SELECT
+    employee_id, first_name, NULL as Middle_Name, last_name, email, phone_number,NULL as Mobile_Phone, hire_date,
+commission_pct,department_id
+FROM
+    hr.employees where department_id = 30
+UNION 
+SELECT
+    employee_id, first_name, 'Ram' as Middle_Name, last_name, email, phone_number, NULL as  Mobile_Phone, hire_date,
+    commission_pct, department_id
+FROM
+    hr.employees where department_id in (10,20,30)
+UNION 
+SELECT
+    employee_id, first_name first_nm, 'Krishna' as Middle_Name, last_name, email, phone_number as Home_Phone,
+    '334 343 4344' Mobile_Phone, hire_date, NULL as commission_pct, department_id
+FROM
+    hr.employees where department_id in (30,40,70);
+
+
+
+SELECT
+    employee_id, first_name, last_name, email, phone_number, hire_date,
+commission_pct,department_id
+FROM
+    hr.employees where department_id = 30
+UNION 
+SELECT
+    employee_id, first_name, last_name, email, phone_number, hire_date,
+    commission_pct, department_id
+FROM
+    hr.employees where department_id in (10,20,30)
+UNION 
+SELECT
+    employee_id, first_name, last_name, email, phone_number as Home_Phone,
+     hire_date, NULL as commission_pct, department_id
+FROM
+    hr.employees where department_id in (30,40,70);
+    
+    
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary
+FROM
+    hr.employees where department_id = 30
+minus
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary
+FROM
+    hr.employees where department_id in (10,20,30)
+UNION
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary
+FROM
+    hr.employees where department_id in (30,40,70);
+    
+    
+SELECT
+    employee_id, first_name, 'null' as middlename,last_name, email, phone_number, hire_date,job_id,salary,department_id
+
+FROM
+    hr.employees where department_id = 30
+UNION 
+SELECT
+    employee_id, first_name, 'null' as middlename,last_name, email, phone_number, hire_date,job_id,salary,department_id
+FROM
+    hr.employees where department_id in (10,20,30)
+UNION 
+SELECT
+   employee_id, first_name, 'null' as middlename,last_name, email, phone_number, hire_date,job_id,salary,department_id
+FROM
+    hr.employees where department_id in (30,40,70);
+
+
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in(10,30)
+INTERSECT
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in (10,20,30)
+INTERSECT
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in (10,40,70);
+    
+
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in (10,20,30)
+MINUS
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in (50,60,70);
+
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in (30,40,70)
+MINUS
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in (10,20,30);
+    
+SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in (30,40,50,60)
+MINUS
+ SELECT
+employee_id,     first_name,     last_name,     email,     phone_number,     hire_date,     job_id,     salary, department_id
+FROM
+    hr.employees where department_id in (10,20,30,50,60);
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
