@@ -566,5 +566,371 @@ FROM
     hr.employees where department_id in (10,20,30,50,60);
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Assignment no 4 (run 05-08-2021 1:51 pm)
+--1.Select all column form Employees who has joined between 2005 and 2009? *
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    phone_number,
+    email,
+    job_id,
+    hire_date,
+    commission_pct,
+    manager_id,
+    department_id
+FROM
+   hr. employees
+WHERE
+    to_char(hire_date, 'yyyy') BETWEEN 2005 AND 2009;
+    
+--2.Select all column form Employees who has joined in year 2007? *
+ SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+    
+FROM
+    hr.employees
+where to_char(hire_date, 'yyyy') = '2007';
+
+--3.Select all Employees from Employees who has salary between 3000 and 7000? *
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+FROM
+    hr.employees
+WHERE
+    salary BETWEEN 3000 AND 7000;
+
+--4.Select Sysdate in 10 different format from dual? 
+--use link http://infolab.stanford.edu/~ullman/fcdb/oracle/or-time.html for you reference *
+--MM Numeric month (e.g., 07); MON Abbreviated month name (e.g., JUL); MONTH Full month name (e.g., JULY); DD Day of month (e.g., 24); DY Abbreviated name of day (e.g., FRI); YYYY 4-digit year (e.g., 1998); YY Last 2 digits of the year (e.g., 98); HH Hour of day (1-12); HH24 Hour of day (0-23); MI Minute (0-59); SS Second (0-59);S
+
+select current_date from dual;
+select to_char(sysdate, 'dy dd-mon-yyyy hh24:mi:SS') as "current time" from dual;
+select to_char(sysdate, 'Dy DD-Mon-YYYY HH24:MI:SS') as "Current Time"
+from dual;
+Select to_char(sysdate, 'dy dd-mon') from dual;
+Select to_char(sysdate, 'dy') from dual;
+Select to_char(sysdate, 'dy dd-mon-yy hh24') from dual;
+select to_char(sysdate, 'mon') from dual;
+select to_char(sysdate, 'yyyy-mon') from dual;
+Select to_char(sysdate, 'yy') from dual;
+select to_char(sysdate,  'yyyy') as "currentYear" from dual;
+select to_char(sysdate, 'YYYY-MM') FROM DUAL;
+
+
+--5.Display all Employees from Employees table who work in DEPARTMENT_ID 30, 50, 110?? *
+--Use in clause
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    salary,
+    job_id,
+    commission_pct,
+    manager_id,
+    department_id
+FROM
+    hr.employees
+WHERE
+    department_id IN ( 30, 50, 110 )
+
+--6.Display all Employees from Employees table who work in DEPARTMENT_ID 30, 50, 110?? *
+--Use or clause
+SELECT
+  employee_id,
+  first_name,
+  last_name,
+  email,
+  phone_number,
+  hire_date,
+  job_id,
+  salary,
+  commission_pct,
+  manager_id,
+  department_id
+FROM
+    hr.employees
+WHERE
+    department_id = 30
+    OR department_id = 50
+    OR department_id = 110;
+    
+    
+--7.Select all Employees from Employees who work in department 50 and 70 and Joining Year is 2005? *
+SELECT
+  employee_id,
+  first_name,
+  last_name,
+  email,
+  phone_number,
+  hire_date,
+  job_id,
+  salary,
+  commission_pct,
+  manager_id,
+  department_id
+FROM
+    hr.employees
+where department_id in (50, 70) and to_char(hire_date, 'yyyy') ='2005';
+
+--8.Select all column form Employees who has has salary more than 10000 and joined in 2006? *
+SELECT
+  employee_id,
+  first_name,
+  last_name,
+  email,
+  phone_number,
+  hire_date,
+  job_id,
+  salary,
+  commission_pct,
+  manager_id,
+  department_id
+FROM
+    hr.employees
+where salary >10000 and to_char(hire_date, 'yyyy') ='2007';
+
+--9.Display Employees who work in DEPARTMENT_ID in (70,80,90) and Salary > 10000 ? *
+SELECT
+  employee_id,
+  first_name,
+  last_name,
+  email,
+  phone_number,
+  hire_date,
+  job_id,
+  salary,
+  commission_pct,
+  manager_id,
+  department_id
+FROM
+    hr.employees
+where department_id in (70, 80, 90) and salary >10000;
+
+--10.Display all Employees from Employees table who joined either Jan 2005 or Mar 2007? *
+SELECT
+  employee_id,
+  first_name,
+  last_name,
+  email,
+  phone_number,
+  hire_date,
+  job_id,
+  salary,
+  commission_pct,
+  manager_id,
+  department_id
+FROM
+    hr.employees
+where to_char(hire_date, 'mon-yyyy')='jan-2005' or to_char(hire_date, 'mon-yyyy') ='mar-2007';
+
+Display employees count who joined in the month of May? *
+SELECT
+  employee_id,
+  to_char(hire_date, 'mon'),
+    count(*)
+FROM
+    hr.employees
+where to_char(hire_date, 'mon') = 'may'
+group by employee_id,to_char(hire_date, 'mon');
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Assignment No 7 (05-08-2021 11:15 pm)
+
+--1.Display Employees who joined before 2003 and after 2005 ? *
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+FROM
+    hr.employees
+where to_char(hire_date, 'yyyy') < 2003 or to_char(hire_date, 'yyyy') >'2005';
+
+--2.Display Employees who has job id = IT_PROG and work in department 50? *
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+FROM
+    hr.employees
+where job_id = 'IT_PROG' and department_id = '50';
+
+--3.Display Employees who has job id = IT_PROG and salary between 2500 and 7500? *
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+FROM
+    hr.employees
+where job_id = 'IT_PROG' and salary between 2500 and 7500; 
+
+--4.Display department ID, year, and Number of employees joined? 
+select department_id,to_char(hire_date, 'yyyy'),count(*)
+from hr.employees
+group by department_id,to_char(hire_date, 'yyyy') 
+
+--5.Display number of employees joined after 15th of the month? *
+select first_name,to_char(hire_date, 'dd')
+from hr.employees
+where to_char(hire_date, 'dd') >=15
+
+--6.Perform union using Employees tables condition DEPARTMENT_ID in (70,80,90) and Salary > 10000 and COMMISSION_PCT is not empty? *
+SELECT
+  employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id  
+FROM
+    hr.employees
+WHERE
+    department_id IN ( 70, 80, 90 )
+ union
+select
+employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+from hr.employees
+where salary >10000
+union
+Select
+employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+from hr.employees
+where commission_pct is not null;
+
+    
+--7.Display employees details for those employees who has any 
+--vowel (a, e, i, o, or u) in last name? *
+Select 
+employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+from hr.employees
+where last_name like '%a%' or last_name like 'A%'
+or last_name like '%e%' or last_name like 'E%'
+or last_name like '%i%' or last_name like 'I%'
+or last_name like '%o%' or last_name like 'O%'
+or last_name like '%u%' or last_name like 'U%'
+
+--8.Display employees who got same third character in first or last name? *
+select first_name,last_name
+from hr.employees
+where substr(first_name,3,1) = substr(last_name,3,1);
+
+--9.Display all Employees from Employees table except year 2007? *
+select
+employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+from hr.employees
+where to_char(hire_date, 'yyyy') <> '2007'
+where to_char(hire_date, 'yyyy') not in '2007'
+where to_char(hire_date, 'yyyy') !='2007';
+
+--10.Display all Employees from Employees table who joined either Jan 2005 or Mar 2007 and not belongs to Department 70? *
+select
+employee_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    hire_date,
+    job_id,
+    salary,
+    commission_pct,
+    manager_id,
+    department_id
+from hr.employees
+where to_char(hire_date, 'mon-yyyy') = 'jan-2005'or 
+to_char(hire_date, 'mon-yyyy') ='mar-2007' and department_id !='70';
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
