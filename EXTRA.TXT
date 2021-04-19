@@ -931,6 +931,172 @@ from hr.employees
 where to_char(hire_date, 'mon-yyyy') = 'jan-2005'or 
 to_char(hire_date, 'mon-yyyy') ='mar-2007' and department_id !='70';
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Queries run on (05-10-2021 3:25 pm)
+--Display Day name and number of employees joined? *
+Select to_char(hire_date, 'dy'),
+count(*)
+from hr.employees
+group by to_char(hire_date, 'dy')
+
+--Display Employee details who department name IS 'IT' AND 
+--MIN_SALARY range IS 5000 to 9000 and his city is 'Seattle' or 'Southlake'? *
+SELECT
+    emp.employee_id,
+    emp.first_name,
+    emp.last_name,
+    emp.salary,
+    dept.department_name,
+    loc.city
+FROM
+    hr.employees emp
+join hr.departments dept on emp.department_id = dept.department_id
+join hr.locations loc on dept.location_id = loc.location_id
+where department_name = 'IT' 
+and salary between 5000 and 9000
+and (city ='Seattle' or city ='Southlake')
+
+--Display the average salary from employee table where commission values is not NULL? *
+select avg(salary),
+from hr.employees
+where commission_pct is not null
+
+Display unique department and unique job id count from employee table where department values is not NULL? *
+Select unique department_id,job_id from hr.employees 
+where department_id is not null;
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+SQL Assignment 12 ( Queries run on 05-10-2021 Saturday 9:25PM)
+Assignment No 12
+--1.Display Emp id, Emp First Name who does NOT work in department 'Sales' ? *
+SELECT
+    emp.employee_id,
+    emp.first_name,
+    dept.department_name
+FROM
+    hr.employees emp
+join hr.departments dept on emp.department_id = dept.department_id
+where department_name !='Sales'
+
+--2.Display Employee details who department name is 'Shipping' and MIN_SALARY range is 3000 to 5000 ? *
+SELECT
+    emp.employee_id,
+    emp.first_name,
+    emp.last_name,
+    emp.email,
+    emp.phone_number,
+    emp.salary,
+    emp.job_id,
+    emp.commission_pct,
+    emp.manager_id,
+    emp.department_id,
+    dept.department_name,
+    j.min_salary
+FROM
+    hr.employees emp
+join hr.departments dept on emp.department_id = dept.department_id
+join hr.jobs j on emp.job_id = j.job_id
+where department_name ='Shipping' and salary between 3000 and 5000;
+
+
+--3.Display Employee details who department name IS NOT 'IT' AND Salary range between 5000 to 9000 and his city is NOT 'Seattle' ? *
+--Join Employees, Department and Location
+SELECT
+    emp.employee_id,
+    emp.first_name,
+    emp.last_name,
+    emp.email,
+    emp.phone_number,
+    emp.salary,
+    emp.job_id,
+    emp.commission_pct,
+    emp.manager_id,
+    emp.department_id,
+    dept.department_name,
+    loc.city
+    
+FROM
+    hr.employees emp
+join hr.departments dept on emp.department_id = dept.department_id
+join hr.locations loc on dept.location_id = loc.location_id
+where department_name  !='IT' and salary between 5000 and 9000 and city <>'Seattle'
+
+--4.Display employee and department name name in which he is not in either 
+--'Sales Representative' or 'Purchasing Manager.? *
+SELECT
+    emp.employee_id,
+    emp.first_name,
+    emp.last_name,
+    emp.email,
+    emp.phone_number,
+    emp.salary,
+    emp.job_id,
+    emp.commission_pct,
+    emp.manager_id,
+    emp.department_id,
+    dept.department_name,
+    j.job_title
+FROM
+    hr.employees emp
+join hr.departments dept on emp.department_id = dept.department_id
+join hr.jobs j on emp.job_id = j.job_id
+where job_title not in ('Sales Representative', 'Purchasing Manager')
+
+--5.Display first name and experience of the employees? *
+select first_name || ' '||last_name as FullName,
+trunc(months_between(sysdate, hire_date)/12) as ExperienceYear
+from hr.employees
+
+--6.Display Employees who joined after 2005 and joined in month of March? *
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    hire_date
+FROM
+    hr.employees
+where to_char(hire_date, 'yyyy')>2005 and to_char(hire_date, 'mon') ='mar'
+
+--7.Display Emp id, Emp First Name, Manager id and Manager First Name? *
+--Use Self join
+SELECT
+    emp.employee_id,
+    emp.first_name,
+    manager.manager_id as "ManagerID",
+    manager.first_name as "ManagerFirst_name"
+FROM
+    hr.employees emp 
+join hr.employees manager on emp.manager_id = manager.employee_id;
+
+--8.Display Emp id, Emp First Name who has more salary than their Manager? *
+--Use Self join
+SELECT
+    emp.employee_id,
+    emp.first_name,
+    emp.salary,
+    manager.manager_id as "ManagerID",
+    manager.first_name as "ManagerFirst_name",
+    manager.salary as "ManagerSalary"
+    
+FROM
+    hr.employees emp 
+join hr.employees manager on emp.manager_id = manager.employee_id
+where emp.salary>manager.salary;
+
+--9.Display Emp id, Emp First Name who has joined before their Manager? *
+--Use Self join
+SELECT
+    emp.employee_id,
+    emp.first_name,
+    emp.hire_date,
+    manager.manager_id as "ManagerID",
+    manager.first_name as "ManagerFirst_name",
+    manager.hire_date as "ManagerHire_date"
+    
+FROM
+    hr.employees emp 
+join hr.employees manager on emp.manager_id = manager.employee_id
+where emp.hire_date<manager.hire_date;
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
